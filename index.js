@@ -1,14 +1,22 @@
 const bootstrap = () => {
     var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
-    var LED = new Gpio(2, 'in');        //use GPIO pin 4, and specify that it is output
+    var LED2 = new Gpio(2, 'in');
+    var LED3 = new Gpio(3, 'out');
+    
+    let currState = 0;
 
     setInterval(() => {
-        const res = LED.readSync();
-        console.log(res);
+        const currentDate = new Date().toISOString();
+
+        currState = !currState;
+        LED3.writeSync(currState);
+
+        const led2 = LED2.readSync();
+        const led3 = LED3.readSync();
+
+        console.log(`[${currentDate}] { LED2: ${led2}, LED3: ${led3} }`);
     }, 1000);
 }
 
-
 console.log("Started");
-
 bootstrap();
