@@ -7,13 +7,13 @@ const bootstrap = () => {
         serial.open(() => {
             serial.on('data', (data) => {
                 const currentDate = new Date().toISOString();
-                console.log(`[${currentDate}] { data: ${data} }`);
+                console.log(`[${ currentDate }] { data: ${ data } }`);
             });
 
         });
 
         setInterval(() => {
-            // serial.write('Hello from raspi-serial');
+            serial.write('at\r\n');
             console.log("live");
         }, 5000);
     });
