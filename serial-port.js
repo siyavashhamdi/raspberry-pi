@@ -1,25 +1,16 @@
 const bootstrap = () => {
-    const SerialPort = require("serialport");
+    const raspi = require('raspi');
+    const Serial = require('raspi-serial').Serial;
 
-    // var portsList = [];
-    SerialPort.list().then((ports) => {
-        console.log({ ports });
-        ports.forEach((port) => {
-            var portInfo = {
-                portPath: port.path,
-                portManufacturer: port.manufacturer,
-            };
-
-            // portsList.push(portInfo);
-            console.log("Port: ", portInfo);
+    raspi.init(() => {
+        var serial = new Serial();
+        serial.open(() => {
+            serial.on('data', (data) => {
+                process.stdout.write(data);
+            });
+            serial.write('Hello from raspi-serial');
         });
     });
-
-    // console.log(portsList.length);
-
-    setInterval(() => {
-        console.log("live");
-    }, 1000);
 }
 
 console.log("Serial port started");
