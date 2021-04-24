@@ -13,8 +13,9 @@ const bootstrap = () => {
         });
 
         setInterval(() => {
-            serial.write('Hello from raspi-serial');
-        }, 1000);
+            // serial.write('Hello from raspi-serial');
+            console.log("live");
+        }, 5000);
     });
 }
 
