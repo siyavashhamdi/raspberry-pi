@@ -6,10 +6,14 @@ const bootstrap = () => {
         var serial = new Serial();
         serial.open(() => {
             serial.on('data', (data) => {
-                process.stdout.write(data);
+                console.log(`[${currentDate}] { data: ${data} }`);
             });
-            serial.write('Hello from raspi-serial');
+
         });
+
+        setInterval(() => {
+            serial.write('Hello from raspi-serial');
+        }, 1000);
     });
 }
 
