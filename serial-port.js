@@ -3,6 +3,7 @@ const bootstrap = () => {
 
     // var portsList = [];
     SerialPort.list().then((ports) => {
+        console.log({ ports });
         ports.forEach((port) => {
             var portInfo = {
                 portPath: port.path,
