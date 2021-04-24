@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "onoff": "^6.0.2"
+    "onoff": "^6.0.2",
+    "serialport": "^9.0.7"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "start:serialport": "node serial-port.js"
   },
   "repository": {
     "type": "git",
