@@ -6,6 +6,7 @@ const bootstrap = () => {
         var serial = new Serial();
         serial.open(() => {
             serial.on('data', (data) => {
+                const currentDate = new Date().toISOString();
                 console.log(`[${currentDate}] { data: ${data} }`);
             });
 
