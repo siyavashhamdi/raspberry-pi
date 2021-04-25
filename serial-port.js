@@ -48,7 +48,7 @@ const bootstrap = () => {
         });
 
         // setInterval(() => {
-        //     serial.write('AT\r');
+        //     serialPort.write('AT\r');
         //     console.log("AT sent.");
         // }, 5000);
 
