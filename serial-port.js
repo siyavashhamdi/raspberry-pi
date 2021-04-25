@@ -36,7 +36,7 @@ const bootstrap = () => {
     }
 
     const setCnmi = () => {
-        serialPort.writeWithCr("AT");
+        serialPort.writeWithCr("AT+CMGF=1");
 
         setTimeout(() => {
             serialPort.writeWithCr("AT+CMGD=\"DEL ALL\"");
