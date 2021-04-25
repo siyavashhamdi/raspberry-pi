@@ -13,7 +13,7 @@ const bootstrap = () => {
                 
                 bufferOut.push(...dataStr);
 
-                console.log(`[${currentDate}] { data: ${dataStr}, data.length: ${dataStr.length}, splitted: ${dataStr.split("").join("-")} }`);
+                console.log(`[${currentDate}] { data: ${dataStr}, data.length: ${dataStr.length}, splitted: ${dataStr.split("").map(k=>k.charCodeAt()).join("-")} }`);
                 
                 if (bufferOut.includes("\r")) {
                     const newData = bufferOut.join("").replace("\r\n", "");
