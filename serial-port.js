@@ -3,15 +3,22 @@ const bootstrap = () => {
     const Serial = require('raspi-serial').Serial;
 
     raspi.init(() => {
-        var serial = new Serial({ baudRate: 1200 });
+        const serial = new Serial({ baudRate: 1200 });
+        let bufferOut = [];
+
         serial.open(() => {
             serial.on('data', (data) => {
                 const dataStr = data.toString();
-                const currentDate = new Date().toISOString();
+                bufferOut.push(...dataStr);
 
-                console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${dataStr}, length: ${dataStr.length} }`);
-                for (const ch of dataStr) {
-                    console.log(`---------: ${ch} => ${ch.charCodeAt()}`)
+                if (bufferOut.includes("\r\n")) {
+                    const currentDate = new Date().toISOString();
+                    const newData = bufferOut.join().replace("\r\n", "");
+
+                    console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${newData}, length: ${newData.length} }`);
+                    for (const ch of newData) {
+                        console.log(`---------: ${ch} => ${ch.charCodeAt()}`)
+                    }
                 }
             });
         });
