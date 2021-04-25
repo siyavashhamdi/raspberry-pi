@@ -43,6 +43,10 @@ const bootstrap = () => {
 
             setTimeout(() => {
                 serialPort.writeWithCr("AT+CNMI=2,2,0,0,0");
+
+                setTimeout(() => {
+                    serialPort.writeWithCr("AT+CSAS");
+                }, 2000);
             }, 2000);
         }, 2000);
     }
