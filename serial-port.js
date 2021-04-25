@@ -12,7 +12,7 @@ const bootstrap = () => {
                 bufferOut.push(...dataStr);
                 console.log("data received");
 
-                if (bufferOut.includes("\r\n")) {
+                if (bufferOut.includes("\r")) {
                     const currentDate = new Date().toISOString();
                     const newData = bufferOut.join().replace("\r\n", "");
 
