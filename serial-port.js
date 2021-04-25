@@ -2,22 +2,24 @@ const bootstrap = () => {
     const raspi = require('raspi');
     const Serial = require('raspi-serial').Serial;
 
+    const serialPort = new Serial({ baudRate: 1200 });
+
     const sendSms = (number, text) => {
         const delayMs = 500;
 
-        serial.write("AT\r");
+        serialPort.write("AT\r");
         console.log("AT\\r sent.");
 
         setTimeout(() => {
-            serial.write("AT+CMGF=1\r");
+            serialPort.write("AT+CMGF=1\r");
             console.log("AT+CMGF=1\\r sent.");
 
             setTimeout(() => {
-                serial.write(`AT+CMGS=\"${number}\"\r`);
+                serialPort.write(`AT+CMGS=\"${number}\"\r`);
                 console.log(`AT+CMGS=\\\"${number}\\\"\\r sent`);
 
                 setTimeout(() => {
-                    serial.write(`${text}${String.fromCharCode(26)}`);
+                    serialPort.write(`${text}${String.fromCharCode(26)}`);
                     console.log(`${text} sent.`);
                 }, delayMs);
             }, delayMs);
@@ -25,11 +27,10 @@ const bootstrap = () => {
     };
 
     raspi.init(() => {
-        const serial = new Serial({ baudRate: 1200 });
         let bufferOut = [];
 
-        serial.open(() => {
-            serial.on('data', (data) => {
+        serialPort.open(() => {
+            serialPort.on('data', (data) => {
                 const dataStr = data.toString();
                 const currentDate = new Date().toISOString();
 
@@ -41,7 +42,7 @@ const bootstrap = () => {
                     const newData = bufferOut.join("").replace("\r\n", "");
 
                     bufferOut = [];
-                    console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${data}, newdata: ${newData}, length: ${newData.length} }`);
+                    console.log(`[${currentDate}] { baudrate: ${serialPort.baudRate}, data: ${data}, newdata: ${newData}, length: ${newData.length} }`);
                 }
             });
         });
