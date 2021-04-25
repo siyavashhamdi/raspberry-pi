@@ -6,8 +6,10 @@ const bootstrap = () => {
         var serial = new Serial({ baudRate: 1200 });
         serial.open(() => {
             serial.on('data', (data) => {
+                const dataStr = data.toString();
                 const currentDate = new Date().toISOString();
-                console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${data}, typeOfData: ${data.toString()} }`);
+
+                console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${dataStr}, dataSplitR: ${dataStr.split("\r")}, dataSplitN: ${dataStr.split("\n")} }`);
             });
         });
 
