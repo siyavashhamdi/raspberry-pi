@@ -3,7 +3,7 @@ const bootstrap = () => {
     const Serial = require('raspi-serial').Serial;
 
     raspi.init(() => {
-        var serial = new Serial();
+        var serial = new Serial({ baudRate: 1200 });
         serial.open(() => {
             serial.on('data', (data) => {
                 const currentDate = new Date().toISOString();
