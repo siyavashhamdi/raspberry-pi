@@ -52,8 +52,16 @@ const bootstrap = () => {
             // }, 5000);
 
             setTimeout(() => {
-                sendSms("09032172257", "Hi-S");
-            }, 2000);
+                serialPort.write('AT\r');
+
+                setTimeout(() => {
+                    serialPort.write('AT+CNMI=2,1,0,1\r');
+                }, 2000);
+            }, 5000);
+
+            // setTimeout(() => {
+            //     sendSms("09032172257", "Hi-S");
+            // }, 2000);
         });
     });
 }
