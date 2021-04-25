@@ -39,7 +39,7 @@ const bootstrap = () => {
         serialPort.writeWithCr("AT");
 
         setTimeout(() => {
-            serialPort.writeWithCr("AT+CNMI=2,2,0,0,0");
+            serialPort.writeWithCr("AT+CMGD=\"DEL ALL\"");
         }, 2000);
     }
 
@@ -58,7 +58,7 @@ const bootstrap = () => {
 
             setTimeout(() => {
                 // setCnmi();
-                flightReset
+                // flightReset();
             }, 3000);
 
             // setTimeout(() => {
