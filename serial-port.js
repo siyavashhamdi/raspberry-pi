@@ -61,7 +61,7 @@ const bootstrap = () => {
             // }, 5000);
 
             setTimeout(() => {
-                // setCnmi();
+                setCnmi();
                 // flightReset();
             }, 3000);
 
