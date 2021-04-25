@@ -14,7 +14,7 @@ const bootstrap = () => {
 
         setInterval(() => {
             serial.write('AT\r');
-            console.log("live - BaudRate: ${}");
+            console.log(`live - BaudRate: ${serial.baudRate}`);
         }, 5000);
     });
 }
