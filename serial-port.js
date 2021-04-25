@@ -60,12 +60,13 @@ const bootstrap = () => {
                 console.log(`[${currentDate}] { data: ${dataStr}, data.length: ${dataStr.length}, splitted: ${dataStr.split("").map(k => k.charCodeAt()).join("-")} }`);
             });
 
-            // setInterval(() => {
-            //     serialPort.writeWithCr("AT");
-            // }, 5000);
+            setInterval(() => {
+                // serialPort.writeWithCr("AT");
+                serialPort.writeWithCr("AT+CNMI=");
+            }, 5000);
 
             setTimeout(() => {
-                setCnmi();
+                // setCnmi();
                 // flightReset();
             }, 3000);
 
