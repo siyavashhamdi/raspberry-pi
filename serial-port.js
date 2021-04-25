@@ -13,7 +13,7 @@ const bootstrap = () => {
                 
                 if (bufferOut.includes("\r")) {
                     const currentDate = new Date().toISOString();
-                    const newData = bufferOut.join().replace("\r\n", "");
+                    const newData = bufferOut.join("").replace("\r\n", "");
 
                     bufferOut = [];
                     console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${newData}, length: ${newData.length} }`);
