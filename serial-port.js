@@ -10,6 +10,8 @@ const bootstrap = () => {
             serial.on('data', (data) => {
                 const dataStr = data.toString();
                 bufferOut.push(...dataStr);
+
+                console.log(`[${currentDate}] { data: ${data}, data.length: ${data.length} }`);
                 
                 if (bufferOut.includes("\r")) {
                     const currentDate = new Date().toISOString();
