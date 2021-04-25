@@ -5,7 +5,7 @@ const bootstrap = () => {
     raspi.init(() => {
         //const lstBautRate = [1200, 2400, 4800, 9600, 19200, 38400, 57600,  115200];
 
-        var serial = new Serial({ baudRate: 9600 });
+        var serial = new Serial({ baudRate: 19200 });
         serial.open(() => {
             serial.on('data', (data) => {
                 const currentDate = new Date().toISOString();
