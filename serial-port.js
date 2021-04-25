@@ -9,7 +9,7 @@ const bootstrap = () => {
                 const dataStr = data.toString();
                 const currentDate = new Date().toISOString();
 
-                console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${dataStr}, dataSplitR: ${dataStr.split("\r")}, dataSplitN: ${dataStr.split("\n")} }`);
+                console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${dataStr}, dataSplitR: ${dataStr.split.length("\r")}, dataSplitN: ${dataStr.split("\n").length} }`);
             });
         });
 
