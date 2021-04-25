@@ -9,12 +9,13 @@ const bootstrap = () => {
         serial.open(() => {
             serial.on('data', (data) => {
                 const dataStr = data.toString();
+                const currentDate = new Date().toISOString();
+                
                 bufferOut.push(...dataStr);
 
                 console.log(`[${currentDate}] { data: ${data}, data.length: ${data.length} }`);
                 
                 if (bufferOut.includes("\r")) {
-                    const currentDate = new Date().toISOString();
                     const newData = bufferOut.join("").replace("\r\n", "");
 
                     bufferOut = [];
