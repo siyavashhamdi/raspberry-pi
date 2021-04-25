@@ -5,18 +5,17 @@ const bootstrap = () => {
     raspi.init(() => {
         //const lstBautRate = [1200, 2400, 4800, 9600, 19200, 38400, 57600,  115200];
 
-        var serial = new Serial({ baudRate: 2400 });
+        var serial = new Serial({ baudRate: 4800 });
         serial.open(() => {
             serial.on('data', (data) => {
                 const currentDate = new Date().toISOString();
-                console.log(`[${currentDate}] { data: ${data} }`);
+                console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${data} }`);
             });
 
         });
 
         setInterval(() => {
             serial.write('AT\r');
-            console.log(`live - BaudRate: ${serial.baudRate}`);
         }, 5000);
     });
 }
