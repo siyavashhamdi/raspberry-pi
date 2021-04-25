@@ -10,6 +10,9 @@ const bootstrap = () => {
                 const currentDate = new Date().toISOString();
 
                 console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${dataStr}, length: ${dataStr.length} }`);
+                for (const ch of dataStr) {
+                    console.log(`---------: ${ch}`)
+                }
             });
         });
 
