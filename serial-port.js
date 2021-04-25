@@ -7,7 +7,7 @@ const bootstrap = () => {
         serial.open(() => {
             serial.on('data', (data) => {
                 const currentDate = new Date().toISOString();
-                console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${data}, typeOfData: ${typeof data} }`);
+                console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${data}, typeOfData: ${data.toString()} }`);
             });
         });
 
