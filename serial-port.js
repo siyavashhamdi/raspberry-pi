@@ -16,7 +16,7 @@ const bootstrap = () => {
                     const newData = bufferOut.join("").replace("\r\n", "");
 
                     bufferOut = [];
-                    console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${newData}, length: ${newData.length} }`);
+                    console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${data}, newdata: ${newData}, length: ${newData.length} }`);
                 }
             });
         });
