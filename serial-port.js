@@ -10,12 +10,12 @@ const bootstrap = () => {
             serial.on('data', (data) => {
                 const dataStr = data.toString();
                 bufferOut.push(...dataStr);
-                console.log("data received");
-
+                
                 if (bufferOut.includes("\r")) {
                     const currentDate = new Date().toISOString();
                     const newData = bufferOut.join().replace("\r\n", "");
 
+                    bufferOut = [];
                     console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${newData}, length: ${newData.length} }`);
                 }
             });
