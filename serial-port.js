@@ -27,7 +27,7 @@ const bootstrap = () => {
         }, delayMs);
     };
 
-    const initReceiveSms = () => {
+    const initReadyReceiveSms = () => {
         serialPort.writeWithCr("AT+CMGF=1");
 
         setTimeout(() => {
@@ -35,10 +35,6 @@ const bootstrap = () => {
 
             setTimeout(() => {
                 serialPort.writeWithCr("AT+CNMI=2,2,0,0,0");
-
-                setTimeout(() => {
-                    serialPort.writeWithCr("AT&W");
-                }, 2000);
             }, 2000);
         }, 2000);
     }
@@ -58,7 +54,7 @@ const bootstrap = () => {
             }, 5000);
             
             setTimeout(() => {
-                initReceiveSms();
+                initReadyReceiveSms();
                 // sendSms("09032172257", "Hi-S");
                 // setCnmi();
             }, 2000);
