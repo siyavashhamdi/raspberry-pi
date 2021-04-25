@@ -27,15 +27,7 @@ const bootstrap = () => {
         }, delayMs);
     };
 
-    const flightReset = () => {
-        serialPort.writeWithCr("AT+CFUN=0");
-
-        setTimeout(() => {
-            serialPort.writeWithCr("AT+CFUN=1");
-        }, 2000);
-    }
-
-    const setCnmi = () => {
+    const initReceiveSms = () => {
         serialPort.writeWithCr("AT+CMGF=1");
 
         setTimeout(() => {
@@ -45,7 +37,7 @@ const bootstrap = () => {
                 serialPort.writeWithCr("AT+CNMI=2,2,0,0,0");
 
                 setTimeout(() => {
-                    serialPort.writeWithCr("AT+CSAS");
+                    serialPort.writeWithCr("AT&W");
                 }, 2000);
             }, 2000);
         }, 2000);
@@ -62,17 +54,14 @@ const bootstrap = () => {
 
             setInterval(() => {
                 // serialPort.writeWithCr("AT");
-                serialPort.writeWithCr("AT+CNMI=?");
+                // serialPort.writeWithCr("AT+CNMI=?");
             }, 5000);
-
+            
             setTimeout(() => {
+                initReceiveSms();
+                // sendSms("09032172257", "Hi-S");
                 // setCnmi();
-                // flightReset();
-            }, 3000);
-
-            // setTimeout(() => {
-            //     sendSms("09032172257", "Hi-S");
-            // }, 2000);
+            }, 2000);
         });
     });
 }
