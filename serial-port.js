@@ -62,7 +62,7 @@ const bootstrap = () => {
 
             setInterval(() => {
                 // serialPort.writeWithCr("AT");
-                serialPort.writeWithCr("AT+CNMI=");
+                serialPort.writeWithCr("AT+CNMI=?");
             }, 5000);
 
             setTimeout(() => {
