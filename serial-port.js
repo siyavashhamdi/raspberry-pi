@@ -11,7 +11,7 @@ const bootstrap = () => {
 
                 console.log(`[${currentDate}] { baudrate: ${serial.baudRate}, data: ${dataStr}, length: ${dataStr.length} }`);
                 for (const ch of dataStr) {
-                    console.log(`---------: ${ch}`)
+                    console.log(`---------: ${ch} => ${ch.charCodeAt()}`)
                 }
             });
         });
