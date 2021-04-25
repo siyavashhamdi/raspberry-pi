@@ -13,8 +13,8 @@ const bootstrap = () => {
         });
 
         setInterval(() => {
-            serial.write('at\r\n');
-            console.log("live");
+            serial.write('AT\r');
+            console.log("live - BaudRate: ${}");
         }, 5000);
     });
 }
