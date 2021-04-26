@@ -12,8 +12,8 @@ const bootstrap = () => {
     const sendSms = (number, text, isUnicode = false) => {
         const delayMs = 500;
 
-        if(isUnicode)
-        text = text.split("").map(k=>k.charCodeAt()).join("");
+        if (isUnicode)
+            text = text.split("").map(k => k.charCodeAt()).join("");
 
         serialPort.writeWithCr('AT');
 
