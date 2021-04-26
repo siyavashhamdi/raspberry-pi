@@ -28,13 +28,13 @@ const bootstrap = () => {
     };
 
     const setBaudRate = (baudrate) => {
-        serialPort.writeWithCr('AT+IPR=?');
+        serialPort.writeWithCr('AT+IPR=');
 
         setTimeout(() => {
             serialPort.writeWithCr(`AT+IPR=${ baudrate }`);
 
             setTimeout(() => {
-                serialPort.writeWithCr('AT&W_SAVE');
+                serialPort.writeWithCr('AT&W');
             }, 1000);
         }, 1000);
     }
