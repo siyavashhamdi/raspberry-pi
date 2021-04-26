@@ -40,7 +40,7 @@ const bootstrap = () => {
     }
 
     const dataReceived = (data) => {
-        console.log(`----------------------- ${ data }`);
+        console.log(`-----------------------\r${ data }\r-----------------------`);
     }
 
     raspi.init(() => {
