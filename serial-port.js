@@ -18,7 +18,7 @@ const bootstrap = () => {
             serialPort.writeWithCr('AT+CMGF=1');
 
             setTimeout(() => {
-                serialPort.writeWithCr(`AT+CMGS=\"${ number }\"`);
+                serialPort.writeWithCr(`AT+CMGS="${ number }"`);
 
                 setTimeout(() => {
                     serialPort.write(`${ text }${ String.fromCharCode(26) }`);
@@ -31,7 +31,7 @@ const bootstrap = () => {
         serialPort.writeWithCr('AT+CMGF=1');
 
         setTimeout(() => {
-            serialPort.writeWithCr('AT+CMGD=\"DEL ALL\"');
+            serialPort.writeWithCr('AT+CMGD="DEL ALL"');
 
             setTimeout(() => {
                 serialPort.writeWithCr('AT+CNMI=2,2,0,0,0');
