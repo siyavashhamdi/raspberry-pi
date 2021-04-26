@@ -49,14 +49,13 @@ const bootstrap = () => {
             let buffer = '';
 
             serialPort.on('data', (data) => {
-                const dataStr = data.toString();
-                const currentDate = new Date().toISOString();
+                // const dataStr = data.toString();
+                // const currentDate = new Date().toISOString();
 
                 // console.log(`[${ currentDate }] { data: ${ dataStr }, data.length: ${ dataStr.length }, splitted: ${ dataStr.split('').map(k => k.charCodeAt()).join('-') } }`);
 
-                buffer += data;
-
                 clearTimeout(delayTimeout);
+                buffer += data;
 
                 delayTimeout = setTimeout(() => {
                     dataReceived(buffer);
@@ -71,7 +70,10 @@ const bootstrap = () => {
 
             setTimeout(() => {
                 initReadyReceiveSms();
-                sendSms('09032172257', 'Hi-S');
+
+                setTimeout(() => {
+                    sendSms('09032172257', 'Hi-S');
+                }, 5000);
                 // setCnmi();
             }, 2000);
         });
