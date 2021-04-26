@@ -2,7 +2,7 @@ const bootstrap = () => {
     const raspi = require('raspi');
     const Serial = require('raspi-serial').Serial;
 
-    const serialPort = new Serial({ baudRate: 9600 });
+    const serialPort = new Serial({ baudRate: 19200 });
 
     serialPort.writeWithCr = (cmd) => {
         serialPort.write(`${ cmd }\r`);
@@ -81,7 +81,7 @@ const bootstrap = () => {
             }, 5000);
 
             setTimeout(() => {
-                setBaudRate(19200);
+                setBaudRate(0);
 
                 setTimeout(() => {
                     initReadyReceiveSms();
