@@ -40,7 +40,7 @@ const bootstrap = () => {
     }
 
     const dataReceived = (data) => {
-        console.log(`-----------------------\r${ data }\r-----------------------`);
+        console.log(`-----------------------\n${ data }\n-----------------------`);
     }
 
     raspi.init(() => {
@@ -72,7 +72,7 @@ const bootstrap = () => {
                 initReadyReceiveSms();
 
                 setTimeout(() => {
-                    sendSms('09032172257', 'Hi-S');
+                    // sendSms('09032172257', 'Hi-S');
                 }, 5000);
                 // setCnmi();
             }, 2000);
