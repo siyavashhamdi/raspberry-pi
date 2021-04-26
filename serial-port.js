@@ -47,8 +47,12 @@ const bootstrap = () => {
 
             setTimeout(() => {
                 serialPort.writeWithCr('AT+CNMI=2,2,0,0,0');
-            }, 2000);
-        }, 2000);
+
+                setTimeout(() => {
+                    serialPort.writeWithCr('AT&W');
+                }, 1000);
+            }, 1000);
+        }, 1000);
     }
 
     const dataReceived = (data) => {
