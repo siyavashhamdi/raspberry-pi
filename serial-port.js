@@ -99,7 +99,7 @@ const bootstrap = () => {
 
                 setTimeout(() => {
                     // initReadyReceiveSms();
-                    sendSms('09032172257', 'Hi ASCII');
+                    sendSms('09032172257', 'سلام یونیکد');
                 }, 5000);
                 // setCnmi();
             }, 2000);
