@@ -2,7 +2,7 @@ const bootstrap = () => {
     const raspi = require('raspi');
     const Serial = require('raspi-serial').Serial;
 
-    const serialPort = new Serial({ baudRate: 460800 });
+    const serialPort = new Serial({ baudRate: 115200 });
 
     serialPort.writeWithCr = (cmd) => {
         serialPort.write(`${ cmd }\r`);
