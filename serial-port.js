@@ -101,7 +101,7 @@ const bootstrap = () => {
 
                 setTimeout(() => {
                     // initReadyReceiveSms();
-                    sendSms('09032172257', 'سلام یونیکد', true);
+                    sendSms('09032172257', 'abc', true);
                 }, 5000);
                 // setCnmi();
             }, 2000);
