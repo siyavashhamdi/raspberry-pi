@@ -68,11 +68,11 @@ const bootstrap = () => {
 
                 clearTimeout(delayTimeout);
                 buffer += data;
-
-                delayTimeout = setTimeout(() => {
-                    dataReceived(buffer);
-                    buffer = '';
-                }, 10);
+                dataReceived(buffer);
+                // delayTimeout = setTimeout(() => {
+                //     dataReceived(buffer);
+                //     buffer = '';
+                // }, 10);
             });
 
             setInterval(() => {
