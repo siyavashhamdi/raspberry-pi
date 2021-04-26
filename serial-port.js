@@ -9,11 +9,10 @@ const bootstrap = () => {
         // serialPort.write(`Sent: ${ cmd }\\r`);
     }
 
-    const sendSms = (number, text, isUnicode = false) => {
+    const sendSms = (number, text) => {
         const delayMs = 500;
 
-        if (isUnicode)
-            text = text.split("").map(k => k.charCodeAt(0).toString(16).padStart(4, 0)).join("");
+        text = text.split("").map(k => k.charCodeAt(0).toString(16).padStart(4, 0)).join("");
 
         serialPort.writeWithCr('AT');
 
@@ -21,8 +20,7 @@ const bootstrap = () => {
             serialPort.writeWithCr('AT+CMGF=1');
 
             setTimeout(() => {
-                if (isUnicode)
-                    serialPort.writeWithCr('AT+CSCS="HEX"');
+                serialPort.writeWithCr('AT+CSCS="HEX"');
 
                 setTimeout(() => {
                     serialPort.writeWithCr('AT+CSMP=49,167,0,8');
@@ -34,8 +32,8 @@ const bootstrap = () => {
                             serialPort.write(`${ text }${ String.fromCharCode(26) }`);
                         }, delayMs);
                     }, delayMs);
-                }, isUnicode ? delayMs : 0);
-            }, isUnicode ? delayMs : 0);
+                }, delayMs);
+            }, delayMs);
         }, delayMs);
     };
 
@@ -101,7 +99,7 @@ const bootstrap = () => {
 
                 setTimeout(() => {
                     // initReadyReceiveSms();
-                    sendSms('09032172257', 'abc', true);
+                    sendSms('09032172257', 'Hi ASCII');
                 }, 5000);
                 // setCnmi();
             }, 2000);
