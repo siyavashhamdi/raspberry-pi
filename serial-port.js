@@ -85,7 +85,7 @@ const bootstrap = () => {
                 delayTimeout = setTimeout(() => {
                     dataReceived(buffer);
                     buffer = '';
-                }, 10);
+                }, 100);
             });
 
             setInterval(() => {
