@@ -81,7 +81,7 @@ const bootstrap = () => {
             }, 5000);
 
             setTimeout(() => {
-                setBaudRate(9600);
+                setBaudRate(19200);
 
                 setTimeout(() => {
                     initReadyReceiveSms();
