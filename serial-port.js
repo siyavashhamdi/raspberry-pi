@@ -81,10 +81,10 @@ const bootstrap = () => {
             }, 5000);
 
             setTimeout(() => {
-                // initReadyReceiveSms();
-                setBaudRate(0);
+                setBaudRate(9600);
 
                 setTimeout(() => {
+                    initReadyReceiveSms();
                     // sendSms('09032172257', 'Hi-S');
                 }, 5000);
                 // setCnmi();
