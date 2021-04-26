@@ -6,7 +6,7 @@ const bootstrap = () => {
 
     serialPort.writeWithCr = (cmd) => {
         serialPort.write(`${ cmd }\r`);
-        serialPort.write(`Sent: ${ cmd }\\r`);
+        // serialPort.write(`Sent: ${ cmd }\\r`);
     }
 
     const sendSms = (number, text) => {
@@ -52,7 +52,7 @@ const bootstrap = () => {
                 const dataStr = data.toString();
                 const currentDate = new Date().toISOString();
 
-                console.log(`[${ currentDate }] { data: ${ dataStr }, data.length: ${ dataStr.length }, splitted: ${ dataStr.split('').map(k => k.charCodeAt()).join('-') } }`);
+                // console.log(`[${ currentDate }] { data: ${ dataStr }, data.length: ${ dataStr.length }, splitted: ${ dataStr.split('').map(k => k.charCodeAt()).join('-') } }`);
 
                 buffer += data;
 
