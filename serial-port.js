@@ -20,9 +20,11 @@ const bootstrap = () => {
             serialPort.writeWithCr('AT+CMGF=1');
 
             setTimeout(() => {
+                // Set this and save to configs of AT
                 serialPort.writeWithCr('AT+CSCS="HEX"');
 
                 setTimeout(() => {
+                    // Set this and save to configs of AT
                     serialPort.writeWithCr('AT+CSMP=49,167,0,8');
 
                     setTimeout(() => {
@@ -109,3 +111,8 @@ const bootstrap = () => {
 
 console.log('Serial port started');
 bootstrap();
+
+// تا بدین‌جا رسیدیم که چون یک‌شکل کردیم و همه یونیکد شد مشکل در خواندن شماره موبایل وجود دارد.
+// برای مثال همچین چیزی بعد از اینکه اس‌ام‌اس توسط ماژول دریافت شد مشاهده می‌شود:
+// +CMT: "2B393839303332313732323537","","21/04/27,03:43:26+18"
+// 53616C616D2054657374
