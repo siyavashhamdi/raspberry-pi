@@ -10,7 +10,7 @@ const bootstrap = () => {
     }
 
     const sendSms = (number, text) => {
-        const delayMs = 500;
+        const delayMs = 9600;
 
         serialPort.writeWithCr('AT');
 
