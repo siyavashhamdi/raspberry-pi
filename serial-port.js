@@ -13,7 +13,7 @@ const bootstrap = () => {
         const delayMs = 500;
 
         if (isUnicode)
-            text = text.split("").map(k => k.charCodeAt()).join("");
+            text = text.split("").map(k => k.charCodeAt(0).toString(16).padStart(4, 0)).join("");
 
         serialPort.writeWithCr('AT');
 
