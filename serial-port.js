@@ -46,7 +46,7 @@ const bootstrap = () => {
     raspi.init(() => {
         serialPort.open(() => {
             let delayTimeout;;
-            const buffer = '';
+            let buffer = '';
 
             serialPort.on('data', (data) => {
                 const dataStr = data.toString();
