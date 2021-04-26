@@ -27,6 +27,18 @@ const bootstrap = () => {
         }, delayMs);
     };
 
+    const setBaudRate = (baudrate) => {
+        serialPort.writeWithCr('AT+IPR=?');
+
+        setTimeout(() => {
+            serialPort.writeWithCr(`AT+IPR=${ baudrate }`);
+
+            setTimeout(() => {
+                serialPort.writeWithCr('AT&W_SAVE');
+            }, 1000);
+        }, 1000);
+    }
+
     const initReadyReceiveSms = () => {
         serialPort.writeWithCr('AT+CMGF=1');
 
@@ -69,7 +81,8 @@ const bootstrap = () => {
             }, 5000);
 
             setTimeout(() => {
-                initReadyReceiveSms();
+                // initReadyReceiveSms();
+                setBaudRate(0);
 
                 setTimeout(() => {
                     // sendSms('09032172257', 'Hi-S');
