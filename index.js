@@ -1,7 +1,7 @@
 const bootstrap = () => {
     var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
     var LED2 = new Gpio(2, 'in');
-    var LED3 = new Gpio(21, 'out');
+    var LED3 = new Gpio(12, 'out');
 
     let currState = 0;
 
