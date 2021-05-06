@@ -29,7 +29,7 @@ const bootstrap = () => {
     }, 1000);
 
     let simResetVal = 0;
-    setTimeout(() => {
+    setInterval(() => {
         const simReset = new Gpio(pin.simReset[0], 'out');
 
         simReset.writeSync((simResetVal + 1) % 2);
