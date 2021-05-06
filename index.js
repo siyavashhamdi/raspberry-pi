@@ -8,6 +8,8 @@ const bootstrap = () => {
         simReset: [18],
     };
 
+    var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
+    
     let index = 0;
     setInterval(() => {
         const currPin = pin.indicator[index];
