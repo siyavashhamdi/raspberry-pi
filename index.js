@@ -8,25 +8,22 @@ const bootstrap = () => {
         simReset: [18],
     };
 
-    var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
-    var LED2 = new Gpio(2, 'in');
-    var LED3 = new Gpio(7, 'out');
-
     let index = 0;
     setInterval(() => {
         const currPin = pin.indicator[index];
         const indicator = new Gpio(currPin, 'out');
 
-        const currValue = indicator.readSync(currPin) ? 0 : 1;
+        const currValue = indicator.readSync(currPin);
 
         index += 1;
         if (index >= pin.indicator.length)
             index = 0;
 
-        indicator.writeSync(currValue);
+        const rndValue = Math.round(Math.random(1) * 10) % 2;
+        indicator.writeSync(Math.random(rndValue));
 
         const currentDate = new Date().toISOString();
-        console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue } }`);
+        console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue }, rndValue: ${ rndValue } }`);
     }, 1000);
 }
 
