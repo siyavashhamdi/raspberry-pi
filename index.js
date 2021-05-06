@@ -17,13 +17,13 @@ const bootstrap = () => {
         const currPin = pin.indicator[index];
         const indicator = new Gpio(currPin, 'out');
 
-        const currValue = indicator.readSync(currPin);
+        // const currValue = indicator.readSync(currPin);
 
         index += 1;
         if (index >= pin.indicator.length)
             index = 0;
 
-        indicator.writeSync(!currValue);
+        indicator.writeSync(1);
 
         const currentDate = new Date().toISOString();
         console.log(`[${ currentDate }] { currPin: ${ currPin }, !currValue: ${ !currValue } }`);
