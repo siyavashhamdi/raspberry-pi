@@ -9,7 +9,7 @@ const bootstrap = () => {
     };
 
     var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
-    
+
     let index = 0;
     setInterval(() => {
         const currPin = pin.indicator[index];
@@ -22,7 +22,7 @@ const bootstrap = () => {
             index = 0;
 
         const rndValue = Math.round(Math.random(1) * 10) % 2;
-        indicator.writeSync(Math.random(rndValue));
+        indicator.writeSync(rndValue);
 
         const currentDate = new Date().toISOString();
         console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue }, rndValue: ${ rndValue } }`);
