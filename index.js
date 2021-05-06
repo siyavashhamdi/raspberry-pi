@@ -26,7 +26,7 @@ const bootstrap = () => {
 
         const currentDate = new Date().toISOString();
         console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue }, rndValue: ${ rndValue } }`);
-    }, 1000);
+    }, 100);
 }
 
 console.log("Started");
