@@ -35,7 +35,7 @@ const bootstrap = () => {
         simReset.writeSync((simResetVal + 1) % 2);
 
         const currentDate = new Date().toISOString();
-        console.log(`[${ currentDate }] { simReset: done }`);
+        // console.log(`[${ currentDate }] { simReset: done }`);
     }, 10000);
 }
 
