@@ -14,17 +14,18 @@ const bootstrap = () => {
 
     let index = 0;
     setInterval(() => {
-        const currentPin = pin.indicator[index];
-        const indicator = new Gpio(currentPin, 'out');
+        const currPin = pin.indicator[index];
+        const currValue = !indicator.readSync(currPin);
+        const indicator = new Gpio(currPin, 'out');
 
         index += 1;
         if (index >= pin.indicator.length)
             index = 0;
 
-        indicator.writeSync(!indicator.readSync(currentPin));
+        indicator.writeSync();
 
         const currentDate = new Date().toISOString();
-        console.log(`[${ currentDate }] { LED2: ${ led2 }, LED3: ${ led3 } }`);
+        console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue } }`);
     }, 1000);
 }
 
