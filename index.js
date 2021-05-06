@@ -17,7 +17,7 @@ const bootstrap = () => {
         const currPin = pin.indicator[index];
         const indicator = new Gpio(currPin, 'out');
 
-        const currValue = indicator.readSync(currPin) ? 1 : 0;
+        const currValue = indicator.readSync(currPin) ? 0 : 1;
 
         index += 1;
         if (index >= pin.indicator.length)
@@ -26,7 +26,7 @@ const bootstrap = () => {
         indicator.writeSync(currValue);
 
         const currentDate = new Date().toISOString();
-        console.log(`[${ currentDate }] { currPin: ${ currPin }, !currValue: ${ !currValue } }`);
+        console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue } }`);
     }, 1000);
 }
 
