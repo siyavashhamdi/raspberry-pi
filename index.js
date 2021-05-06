@@ -1,21 +1,31 @@
 const bootstrap = () => {
+    const pin = {
+        input: [2, 3, 4, 17, 27, 22, 10, 9],
+        output: [11, 5, 6, 13, 19, 26, , 21, 20],
+        indicator: [16, 12],
+        buzzer: [7],
+        key: [8],
+        simReset: [18],
+    };
+
     var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
     var LED2 = new Gpio(2, 'in');
     var LED3 = new Gpio(7, 'out');
 
-    let currState = 0;
-
+    let index = 0;
     setInterval(() => {
+        const currentPin = pin.indicator[index];
+        const indicator = new Gpio(currentPin, 'out');
+
+        index += 1;
+        if (index >= pin.indicator.length)
+            index = 0;
+
+        indicator.writeSync(!indicator.readSync(currentPin));
+
         const currentDate = new Date().toISOString();
-
-        currState = (currState + 1) % 2;
-        LED3.writeSync(currState);
-
-        const led2 = LED2.readSync();
-        const led3 = LED3.readSync();
-
-        console.log(`[${currentDate}] { LED2: ${led2}, LED3: ${led3} }`);
-    }, 2000);
+        console.log(`[${ currentDate }] { LED2: ${ led2 }, LED3: ${ led3 } }`);
+    }, 1000);
 }
 
 console.log("Started");
