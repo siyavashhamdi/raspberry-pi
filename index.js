@@ -26,7 +26,17 @@ const bootstrap = () => {
 
         const currentDate = new Date().toISOString();
         console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue }, rndValue: ${ rndValue } }`);
-    }, 100);
+    }, 1000);
+
+    let simResetVal = 0;
+    setTimeout(() => {
+        const simReset = new Gpio(pin.simReset[0], 'out');
+
+        simReset.writeSync((simResetVal + 1) % 2);
+
+        const currentDate = new Date().toISOString();
+        console.log(`[${ currentDate }] { simReset: done }`);
+    }, 10000);
 }
 
 console.log("Started");
