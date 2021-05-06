@@ -15,7 +15,7 @@ const bootstrap = () => {
         const led3 = LED3.readSync();
 
         console.log(`[${currentDate}] { LED2: ${led2}, LED3: ${led3} }`);
-    }, 100);
+    }, 2000);
 }
 
 console.log("Started");
