@@ -30,11 +30,11 @@ const bootstrap = () => {
 
     let simResetVal = 0;
     setInterval(() => {
-        const simReset = new Gpio(pin.simReset[0], 'out');
+        // const simReset = new Gpio(pin.simReset[0], 'out');
 
-        simReset.writeSync((simResetVal + 1) % 2);
+        // simReset.writeSync((simResetVal + 1) % 2);
 
-        const currentDate = new Date().toISOString();
+        // const currentDate = new Date().toISOString();
         // console.log(`[${ currentDate }] { simReset: done }`);
     }, 10000);
 }
