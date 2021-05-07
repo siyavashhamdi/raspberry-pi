@@ -11,7 +11,7 @@ const bootstrap = () => {
     var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
 
     const initInputs = () => {
-        const button = new Gpio(pin.key[0], 'in', 'both', { debounceTimeout: 5 });
+        const button = new Gpio(pin.key[0], 'in', 'both', { debounceTimeout: 500 });
         const buzzer = new Gpio(pin.buzzer[0], 'out');
 
         let = buzzerVal = 0;
