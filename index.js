@@ -20,7 +20,7 @@ const bootstrap = () => {
             const currBtn = new Gpio(currPinIndex, 'in', 'rising', { debounceTimeout: 1000 });
 
             console.log({ currPinIndex });
-            
+
             currBtn.watch((err, value) => {
                 if (err) {
                     throw err;
