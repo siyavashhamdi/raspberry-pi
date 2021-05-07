@@ -16,26 +16,26 @@ const bootstrap = () => {
         }
 
         for (let i = 0; i < pin.input.length; i += 1) {
-            const currPinIndex = pin.key[i];
-            // const currBtn = new Gpio(currPinIndex, 'in', 'rising', { debounceTimeout: 1000 });
+            const currPinIndex = pin.input[i];
+            const currBtn = new Gpio(currPinIndex, 'in', 'rising', { debounceTimeout: 1000 });
 
             console.log({ currPinIndex });
+            
+            currBtn.watch((err, value) => {
+                if (err) {
+                    throw err;
+                }
 
-            // currBtn.watch((err, value) => {
-            //     if (err) {
-            //         throw err;
-            //     }
+                inputFire(i, value);
+            });
 
-            //     inputFire(i, value);
-            // });
-
-            // console.log({ SL: "input-watch", num: i });
+            console.log({ SL: "input-watch", num: i });
         }
 
-        // process.on('SIGINT', value => {
-        //     console.log({ SL: 'onSIGINT', value });
-        //     // button.unexport();
-        // });
+        process.on('SIGINT', value => {
+            console.log({ SL: 'onSIGINT', value });
+            // button.unexport();
+        });
     }
 
     const initOutput = () => {
