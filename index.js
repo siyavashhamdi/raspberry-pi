@@ -11,20 +11,21 @@ const bootstrap = () => {
     var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
 
     const initInputs = () => {
-        const button = new Gpio(pin.key[0], 'in', 'rising', { debounceTimeout: 1000 });
-        const buzzer = new Gpio(pin.buzzer[0], 'out');
+        const inputFire = (index, value) => {
+            console.log({ SL: 'btn watch', index, value });
+        }
 
-        let = buzzerVal = 0;
-        button.watch((err, value) => {
-            if (err) {
-                throw err;
-            }
+        for (let i = 0; i < pin.input.length; i += 1) {
+            const currBtn = new Gpio(pin.key[i], 'in', 'rising', { debounceTimeout: 1000 });
 
-            console.log({ SL: 'btn watch', value });
+            button.watch((err, value) => {
+                if (err) {
+                    throw err;
+                }
 
-            buzzerVal += 1;
-            buzzer.writeSync(buzzerVal % 2 == 0);
-        });
+                inputFire(i, value);
+            });
+        }
 
         process.on('SIGINT', value => {
             console.log({ SL: 'onSIGINT', value });
