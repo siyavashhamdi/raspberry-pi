@@ -1,7 +1,7 @@
 const bootstrap = () => {
     const pin = {
         input: [2, 3, 4, 17, 27, 22, 10, 9],
-        output: [11, 5, 6, 13, 19, 26, , 21, 20],
+        output: [11, 5, 6, 13, 19, 26, 21, 20],
         indicator: [16, 12],
         buzzer: [7],
         key: [8],
@@ -15,8 +15,8 @@ const bootstrap = () => {
             console.log({ SL: 'btn-watch', index, value });
         }
 
-        for (let i = 0; i < pin.input.length; i += 1) {
-            const currPinIndex = pin.input[i];
+        for (let i = 0; i < pin.output.length; i += 1) {
+            const currPinIndex = pin.output[i];
             const currBtn = new Gpio(currPinIndex, 'in', 'rising', { debounceTimeout: 100 });
 
             currBtn.watch((err, value) => {
