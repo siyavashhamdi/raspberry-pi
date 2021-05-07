@@ -18,7 +18,7 @@ const bootstrap = () => {
         for (let i = 0; i < pin.input.length; i += 1) {
             const currBtn = new Gpio(pin.key[i], 'in', 'rising', { debounceTimeout: 1000 });
 
-            button.watch((err, value) => {
+            currBtn.watch((err, value) => {
                 if (err) {
                     throw err;
                 }
