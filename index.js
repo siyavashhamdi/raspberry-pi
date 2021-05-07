@@ -12,7 +12,7 @@ const bootstrap = () => {
 
     const initInputs = () => {
         const inputFire = (index, value) => {
-            console.log({ SL: 'btn watch', index, value });
+            console.log({ SL: 'btn-watch', index, value });
         }
 
         for (let i = 0; i < pin.input.length; i += 1) {
@@ -25,6 +25,8 @@ const bootstrap = () => {
 
                 inputFire(i, value);
             });
+
+            console.log({ SL: "input-watch", num: i });
         }
 
         process.on('SIGINT', value => {
