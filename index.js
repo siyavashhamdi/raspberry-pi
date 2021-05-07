@@ -10,33 +10,56 @@ const bootstrap = () => {
 
     var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
 
-    let index = 0;
-    setInterval(() => {
-        const currPin = pin.indicator[index];
-        const indicator = new Gpio(currPin, 'out');
+    const initInputs = () => {
+        const button = new Gpio(pin.key[0], 'in', 'rising', { debounceTimeout: 10 });
 
-        const currValue = indicator.readSync(currPin);
+        button.watch((err, value) => {
+            if (err) {
+                throw err;
+            }
 
-        index += 1;
-        if (index >= pin.indicator.length)
-            index = 0;
+            console.log({ SL: 'btn watch', value });
+        });
 
-        const rndValue = Math.round(Math.random(1) * 10) % 2;
-        indicator.writeSync(rndValue);
+        process.on('SIGINT', value => {
+            console.log({ SL: 'onSIGINT', value });
+            // button.unexport();
+        });
+    }
 
-        const currentDate = new Date().toISOString();
-        console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue }, rndValue: ${ rndValue } }`);
-    }, 1000);
+    const initOutput = () => {
+        let index = 0;
+        setInterval(() => {
+            const currPin = pin.indicator[index];
+            const indicator = new Gpio(currPin, 'out');
 
-    let simResetVal = 0;
-    setInterval(() => {
-        // const simReset = new Gpio(pin.simReset[0], 'out');
+            const currValue = indicator.readSync(currPin);
 
-        // simReset.writeSync((simResetVal + 1) % 2);
+            index += 1;
+            if (index >= pin.indicator.length)
+                index = 0;
 
-        // const currentDate = new Date().toISOString();
-        // console.log(`[${ currentDate }] { simReset: done }`);
-    }, 10000);
+            const rndValue = Math.round(Math.random(1) * 10) % 2;
+            indicator.writeSync(rndValue);
+
+            const currentDate = new Date().toISOString();
+            console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue }, rndValue: ${ rndValue } }`);
+        }, 1000);
+    }
+
+    const initSim = () => {
+        let simResetVal = 0;
+        setInterval(() => {
+            // const simReset = new Gpio(pin.simReset[0], 'out');
+
+            // simReset.writeSync((simResetVal + 1) % 2);
+
+            // const currentDate = new Date().toISOString();
+            // console.log(`[${ currentDate }] { simReset: done }`);
+        }, 10000);
+    }
+
+    initInputs();
 }
 
 console.log("Started");
