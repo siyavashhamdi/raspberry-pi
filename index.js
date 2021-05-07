@@ -14,14 +14,16 @@ const bootstrap = () => {
         const button = new Gpio(pin.key[0], 'in', 'both', { debounceTimeout: 5 });
         const buzzer = new Gpio(pin.buzzer[0], 'out');
 
-        let = buzzerval = 0;
+        let = buzzerVal = 0;
         button.watch((err, value) => {
             if (err) {
                 throw err;
             }
 
             console.log({ SL: 'btn watch', value });
-            buzzer.writeSync(((buzzerval + 1) % 2) == 0);
+
+            buzzerVal += 1;
+            buzzer.writeSync(buzzerVal % 2 == 0);
         });
 
         process.on('SIGINT', value => {
