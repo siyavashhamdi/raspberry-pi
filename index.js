@@ -15,9 +15,10 @@ const bootstrap = () => {
             console.log({ SL: 'btn-watch', index, value });
         }
 
-        for (let i = 0; i < pin.output.length; i += 1) {
-            const currPinIndex = pin.output[i];
+        for (let i = 0; i < pin.input.length; i += 1) {
+            const currPinIndex = pin.input[i];
             const currBtn = new Gpio(currPinIndex, 'in', 'rising', { debounceTimeout: 10 });
+            
             currBtn.watch((err, value) => {
                 if (err) {
                     throw err;
