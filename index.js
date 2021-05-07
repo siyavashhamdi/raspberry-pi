@@ -16,17 +16,20 @@ const bootstrap = () => {
         }
 
         for (let i = 0; i < pin.input.length; i += 1) {
-            const currBtn = new Gpio(pin.key[i], 'in', 'rising', { debounceTimeout: 1000 });
+            const currPinIndex = pin.key[i];
+            const currBtn = new Gpio(currPinIndex, 'in', 'rising', { debounceTimeout: 1000 });
 
-            currBtn.watch((err, value) => {
-                if (err) {
-                    throw err;
-                }
+            console.log({ currPin });
 
-                inputFire(i, value);
-            });
+            // currBtn.watch((err, value) => {
+            //     if (err) {
+            //         throw err;
+            //     }
 
-            console.log({ SL: "input-watch", num: i });
+            //     inputFire(i, value);
+            // });
+
+            // console.log({ SL: "input-watch", num: i });
         }
 
         process.on('SIGINT', value => {
