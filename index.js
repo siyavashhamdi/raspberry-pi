@@ -39,17 +39,17 @@ const bootstrap = () => {
     const initOutput = () => {
         let index = 0;
         setInterval(() => {
-            const currPin = pin.indicator[index];
-            const indicator = new Gpio(currPin, 'out');
+            const currPin = pin.output[index];
+            const output = new Gpio(currPin, 'out');
 
-            const currValue = indicator.readSync(currPin);
+            const currValue = output.readSync(currPin);
 
             index += 1;
-            if (index >= pin.indicator.length)
+            if (index >= pin.output.length)
                 index = 0;
 
             const rndValue = Math.round(Math.random(1) * 10) % 2;
-            indicator.writeSync(rndValue);
+            output.writeSync(rndValue);
 
             const currentDate = new Date().toISOString();
             console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue }, rndValue: ${ rndValue } }`);
