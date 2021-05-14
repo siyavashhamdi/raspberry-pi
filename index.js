@@ -68,7 +68,7 @@ const bootstrap = () => {
         }, 10000);
     }
 
-    initInputs();
+    initOutput();
 }
 
 console.log("Started");
