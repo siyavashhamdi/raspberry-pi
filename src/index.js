@@ -1,11 +1,11 @@
 const bootstrap = () => {
     var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
 
-    const pin = {
-        rig1and3 = { no: 13, value: 0 },
-        rig2 = { no: 6, value: 0 },
-        cooler = { no: 5, value: 0 },
-    }
+    const pin = {};
+
+    pin.rig1and3 = { no: 13, value: 0 };
+    pin.rig2 = { no: 6, value: 0 };
+    pin.cooler = { no: 5, value: 0 };
 
     setTimeout(() => {
         const output = new Gpio(pin.rig2.no, 'out');
