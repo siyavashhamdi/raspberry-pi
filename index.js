@@ -38,6 +38,8 @@ const bootstrap = () => {
 
     const initOutput = () => {
         let index = 0;
+        let rndValue = 1; //Math.round(Math.random(1) * 10) % 2;
+
         setInterval(() => {
             const currPin = pin.output[index];
             const output = new Gpio(currPin, 'out');
@@ -45,15 +47,16 @@ const bootstrap = () => {
             const currValue = output.readSync(currPin);
 
             index += 1;
-            if (index >= pin.output.length)
+            if (index >= pin.output.length){
                 index = 0;
-
-            const rndValue = Math.round(Math.random(1) * 10) % 2;
+                rndValue = (rndValue + 1) % 2
+            }
+            
             output.writeSync(rndValue);
 
             const currentDate = new Date().toISOString();
             console.log(`[${ currentDate }] { currPin: ${ currPin }, currValue: ${ currValue }, rndValue: ${ rndValue } }`);
-        }, 100);
+        }, 10 * 1000);
     }
 
     const initSim = () => {
