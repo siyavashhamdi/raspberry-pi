@@ -6,7 +6,7 @@ const bootstrap = () => {
     const pinRigCooler = 5;
 
     const valRig2 = 0;
-    const valRig1and3 = 1;
+    const valRig1and3 = 0;
     const valRigCooler = 1;
 
     setTimeout(() => {
