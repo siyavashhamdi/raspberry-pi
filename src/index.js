@@ -3,7 +3,7 @@ const bootstrap = () => {
 
     const pin = {};
 
-    pin.rig1and3 = { no: 13, value: 1 };
+    pin.rig1and3 = { no: 13, value: 0 };
     pin.rig2 = { no: 6, value: 1 };
     pin.cooler = { no: 5, value: 1 };
 
