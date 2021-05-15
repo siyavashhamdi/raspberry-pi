@@ -26,7 +26,8 @@ const bootstrap = () => {
 
     let coolerVal = 0;
     setInterval(() => {
-        pin.cooler.val = (coolerVal + 1) % 2;
+        coolerVal += 1;
+        pin.cooler.val = coolerVal % 2;
         const output = new Gpio(pin.cooler.no, 'out');
         output.writeSync(pin.cooler.val);
 
