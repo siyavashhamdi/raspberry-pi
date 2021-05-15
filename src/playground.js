@@ -9,40 +9,16 @@ const bootstrap = () => {
     };
 
     var Gpio = require('onoff').Gpio;   //include onoff to interact with the GPIO
-
-    const initInputs = () => {
-        const inputFire = (index, value) => {
-            console.log({ SL: 'btn-watch', index, value });
-        }
-
-        for (let i = 0; i < pin.output.length; i += 1) {
-            const currPinIndex = pin.output[i];
-            const currBtn = new Gpio(currPinIndex, 'in', 'rising', { debounceTimeout: 100 });
-
-            currBtn.watch((err, value) => {
-                if (err) {
-                    throw err;
-                }
-
-                inputFire(i, value);
-            });
-
-            console.log({ SL: "input-watch", num: i });
-        }
-
-        process.on('SIGINT', value => {
-            console.log({ SL: 'onSIGINT', value });
-            // button.unexport();
-        });
-    }
-
+    
     const initOutput = () => {
         let index = 0;
         let rndValue = 1; //Math.round(Math.random(1) * 10) % 2;
 
+        for(const inp of pin.input)
+
         setInterval(() => {
             const currPin = pin.output[index];
-            const output = new Gpio(currPin, 'out');
+            
 
             const currValue = output.readSync(currPin);
 

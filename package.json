@@ -11,8 +11,9 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "start:serialport": "node serial-port.js"
+    "start": "node src/index.js",
+    "start:playground": "node src/playground.js",
+    "start:serialport": "node src/serial-port.js"
   },
   "repository": {
     "type": "git",
