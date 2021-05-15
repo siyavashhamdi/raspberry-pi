@@ -24,16 +24,13 @@ const bootstrap = () => {
         console.log(`[${currentDate}] { currPin: ${pin.rig1and3.no}, value: ${pin.rig1and3.val}, desc: 'pinRig1and3' }`);
     }, 2000);
 
-    let coolerVal = 0;
-    setInterval(() => {
-        coolerVal += 1;
-        pin.cooler.val = coolerVal % 2;
+    setTimeout(() => {
         const output = new Gpio(pin.cooler.no, 'out');
         output.writeSync(pin.cooler.val);
 
         const currentDate = new Date().toISOString();
         console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
-    }, 5000);
+    }, 3000);
 }
 
 console.log("Started");
