@@ -22,7 +22,7 @@ const bootstrap = () => {
 
         const currentDate = new Date().toISOString();
         console.log(`[${ currentDate }] { currPin: ${ pin.rig2.no }, value: ${ pin.rig2.val } desc: 'pinRig2' }`);
-    }, 1000);
+    }, 5000);
 
     setTimeout(() => {
         const output = new Gpio(pin.cooler.no, 'out');
@@ -30,7 +30,7 @@ const bootstrap = () => {
 
         const currentDate = new Date().toISOString();
         console.log(`[${ currentDate }] { currPin: ${ pin.cooler.no }, value: ${ pin.cooler.val }, desc: 'pinRigCooler' }`);
-    }, 15000);
+    }, 10000);
 }
 
 console.log("Started");
