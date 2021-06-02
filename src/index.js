@@ -31,6 +31,16 @@ const bootstrap = () => {
         const currentDate = new Date().toISOString();
         console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
     }, 3000);
+
+    setTimeout(() => {
+        pin.cooler.val = 1;
+        
+        const output = new Gpio(pin.cooler.no, 'out');
+        output.writeSync(pin.cooler.val);
+
+        const currentDate = new Date().toISOString();
+        console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
+    }, 6000);
 }
 
 console.log("Started");
