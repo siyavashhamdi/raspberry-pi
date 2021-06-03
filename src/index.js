@@ -25,7 +25,7 @@ const bootstrap = () => {
     }, 1000);
 
     setTimeout(() => {
-        pin.cooler.rig1and3 = 1;
+        pin.rig1and3.val = 1;
         
         const output = new Gpio(pin.rig1and3.no, 'out');
         output.writeSync(pin.rig1and3.val);
