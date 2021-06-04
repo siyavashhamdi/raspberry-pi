@@ -16,41 +16,41 @@ const bootstrap = () => {
     //     console.log(`[${currentDate}] { currPin: ${pin.rig2.no}, value: ${pin.rig2.val} desc: 'pinRig2' }`);
     // }, 1000);
 
+    // setTimeout(() => {
+    //     const output = new Gpio(pin.rig1and3.no, 'out');
+    //     output.writeSync(pin.rig1and3.val);
+
+    //     const currentDate = new Date().toISOString();
+    //     console.log(`[${currentDate}] { currPin: ${pin.rig1and3.no}, value: ${pin.rig1and3.val}, desc: 'pinRig1and3' }`);
+    // }, 1000);
+
+    // setTimeout(() => {
+    //     pin.rig1and3.val = 1;
+        
+    //     const output = new Gpio(pin.rig1and3.no, 'out');
+    //     output.writeSync(pin.rig1and3.val);
+
+    //     const currentDate = new Date().toISOString();
+    //     console.log(`[${currentDate}] { currPin: ${pin.rig1and3.no}, value: ${pin.rig1and3.val}, desc: 'pinRig1and3' }`);
+    // }, 10000);
+
     setTimeout(() => {
-        const output = new Gpio(pin.rig1and3.no, 'out');
-        output.writeSync(pin.rig1and3.val);
+        const output = new Gpio(pin.cooler.no, 'out');
+        output.writeSync(pin.cooler.val);
 
         const currentDate = new Date().toISOString();
-        console.log(`[${currentDate}] { currPin: ${pin.rig1and3.no}, value: ${pin.rig1and3.val}, desc: 'pinRig1and3' }`);
+        console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
     }, 1000);
 
     setTimeout(() => {
-        pin.rig1and3.val = 1;
+        pin.cooler.val = 1;
         
-        const output = new Gpio(pin.rig1and3.no, 'out');
-        output.writeSync(pin.rig1and3.val);
+        const output = new Gpio(pin.cooler.no, 'out');
+        output.writeSync(pin.cooler.val);
 
         const currentDate = new Date().toISOString();
-        console.log(`[${currentDate}] { currPin: ${pin.rig1and3.no}, value: ${pin.rig1and3.val}, desc: 'pinRig1and3' }`);
-    }, 10000);
-
-    // setTimeout(() => {
-    //     const output = new Gpio(pin.cooler.no, 'out');
-    //     output.writeSync(pin.cooler.val);
-
-    //     const currentDate = new Date().toISOString();
-    //     console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
-    // }, 3000);
-
-    // setTimeout(() => {
-    //     pin.cooler.val = 1;
-        
-    //     const output = new Gpio(pin.cooler.no, 'out');
-    //     output.writeSync(pin.cooler.val);
-
-    //     const currentDate = new Date().toISOString();
-    //     console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
-    // }, 6000);
+        console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
+    }, 5000);
 }
 
 console.log("Started");
