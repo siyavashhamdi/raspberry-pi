@@ -52,10 +52,8 @@ const bootstrap = () => {
     //     console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
     // }, 5000);
 
-    let twoHalfHour = 1000;
-    setInterval(() => {
-        twoHalfHour = 2.5 * 60 * 60 * 1 * 1000;
-
+    const twoHalfHour = 2.5 * 60 * 60 * 1 * 1000;
+    const switchCooler = () => {
         pin.cooler.val = pin.cooler.val == 1 ? 0 : 1;
 
         const output = new Gpio(pin.cooler.no, 'out');
@@ -64,8 +62,11 @@ const bootstrap = () => {
         const currentDate = new Date().toISOString();
         const nextSwitchDate = new Date(new Date().getTime() + twoHalfHour).toISOString();;
 
-        console.log(`[${ currentDate }] { currPin: ${ pin.cooler.no }, value: ${ pin.cooler.val }, desc: 'pinRigCooler', nextSwitch: ${ nextSwitchDate } }`);
-    }, twoHalfHour);
+        console.log(`[${ currentDate }] { currPin: ${ pin.cooler.no }, value: ${ pin.cooler.val }, desc: 'pinRigCooler', nextSwitch: ${ nextSwitchDate } }`);;
+    };
+
+    switchCooler();
+    setInterval(switchCooler, twoHalfHour);
 }
 
 console.log("Started");
