@@ -60,7 +60,7 @@ const bootstrap = () => {
         output.writeSync(pin.cooler.val);
 
         const currentDate = new Date().toISOString();
-        console.log(`[${ currentDate }] { currPin: ${ pin.cooler.no }, value: ${ pin.cooler.val }, desc: 'pinRigCooler' }`);
+        console.log(`[${ currentDate }] { currPin: ${ pin.cooler.no }, value: ${ pin.cooler.val }, desc: 'pinRigCooler', nextSwitch: ${ currentDate.setSeconds(currentDate.getSeconds() + twoHalfHour) } }`);
     }, twoHalfHour);
 }
 
