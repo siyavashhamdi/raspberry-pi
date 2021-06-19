@@ -86,6 +86,8 @@ const bootstrap = () => {
         button = new Gpio(inputPinNo, 'in', 'rising');
 
         button.watch(function(err, value) {
+            console.log("watch btn#: " + inputPinNo);
+            
             if(dtNextSendSms && new Date < dtNextSendSms) {
                 console.log("Date is not reached.");
             }
