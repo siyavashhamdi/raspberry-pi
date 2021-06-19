@@ -82,6 +82,10 @@ const bootstrap = () => {
     const twoMins = 2 * 60  * 1000;
     let dtNextSendSms = null;
 
+    const raspi = require('raspi');
+    const Serial = require('raspi-serial').Serial;
+    const serialPort = new Serial({ baudRate: 115200 });
+
     const listenToButton = (inputPinNo) => {
         console.log("listen done to btn#: " + inputPinNo);
 
@@ -98,11 +102,6 @@ const bootstrap = () => {
             dtNextSendSms = new Date(new Date().getTime() + twoMins).toISOString();
   
             console.log('Pin#: ' + inputPinNo + " enabled!");
-
-            const raspi = require('raspi');
-            const Serial = require('raspi-serial').Serial;
-
-            const serialPort = new Serial({ baudRate: 115200 });
 
             serialPort.writeWithCr = (cmd) => {
                 serialPort.write(`${ cmd }\r`);
