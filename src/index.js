@@ -99,9 +99,10 @@ const bootstrap = () => {
                 return;
             }
 
-            dtNextSendSms = new Date(new Date().getTime() + twoMins).toISOString();
+            dtNextSendSms = new Date(new Date(new Date().getTime() + twoMins).toISOString());
   
             console.log('Pin#: ' + inputPinNo + " enabled!");
+            return;
 
             serialPort.writeWithCr = (cmd) => {
                 serialPort.write(`${ cmd }\r`);
