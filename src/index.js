@@ -68,7 +68,7 @@ const bootstrap = () => {
     switchCooler();
     setInterval(switchCooler, twoHalfHour);
 
-    let buzzerVal = 0;
+    let buzzerVal = 1;
     setTimeout(() => {
         buzzerVal = buzzerVal == 1 ? 0 : 1;
 
