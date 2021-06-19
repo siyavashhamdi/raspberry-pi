@@ -67,6 +67,17 @@ const bootstrap = () => {
 
     switchCooler();
     setInterval(switchCooler, twoHalfHour);
+
+    let buzzerVal = 0;
+    setTimeout(() => {
+        buzzerVal = buzzerVal == 1 ? 0 : 1;
+
+        const output = new Gpio(7, 'out');
+        output.writeSync(buzzerVal);
+
+        const currentDate = new Date().toISOString();
+        console.log(`[${currentDate}] { currPin: ${7}, value: ${buzzerVal} desc: 'buzzerVal' }`);
+    }, 1000);
 }
 
 console.log("Started");
