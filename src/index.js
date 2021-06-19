@@ -79,7 +79,7 @@ const bootstrap = () => {
     //     console.log(`[${currentDate}] { currPin: ${7}, value: ${buzzerVal} desc: 'buzzerVal' }`);
     // }, 1000);
 
-    const twoMins = 2 * 60  * 1000;
+    const tenMins = 10 * 60  * 1000;
     let dtNextSendSms = null;
 
     const raspi = require('raspi');
@@ -99,7 +99,7 @@ const bootstrap = () => {
                 return;
             }
 
-            dtNextSendSms = new Date(new Date(new Date().getTime() + twoMins).toISOString());
+            dtNextSendSms = new Date(new Date(new Date().getTime() + tenMins).toISOString());
   
             console.log('Pin#: ' + inputPinNo + " enabled!");
 
