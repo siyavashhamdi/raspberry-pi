@@ -68,32 +68,31 @@ const bootstrap = () => {
     switchCooler();
     setInterval(switchCooler, twoHalfHour);
 
-    let buzzerVal = 1;
-    setTimeout(() => {
-        buzzerVal = buzzerVal == 1 ? 0 : 1;
+    // let buzzerVal = 1;
+    // setTimeout(() => {
+    //     buzzerVal = buzzerVal == 1 ? 0 : 1;
 
-        const output = new Gpio(7, 'out');
-        output.writeSync(buzzerVal);
+    //     const output = new Gpio(7, 'out');
+    //     output.writeSync(buzzerVal);
 
-        const currentDate = new Date().toISOString();
-        console.log(`[${currentDate}] { currPin: ${7}, value: ${buzzerVal} desc: 'buzzerVal' }`);
-    }, 1000);
+    //     const currentDate = new Date().toISOString();
+    //     console.log(`[${currentDate}] { currPin: ${7}, value: ${buzzerVal} desc: 'buzzerVal' }`);
+    // }, 1000);
 
     const twoMins = 2 * 60  * 1000;
-    let dtNextSendSms = new Date(new Date().getTime() + twoMins).toISOString();
+    let dtNextSendSms = null;
 
     const listenToButton = (inputPinNo) => {
         button = new Gpio(inputPinNo, 'in', 'rising');
 
         button.watch(function(err, value) {
-            if(new Date < dtNextSendSms) {
+            if(dtNextSendSms && new Date < dtNextSendSms) {
                 console.log("Date is not reached.");
             }
                 return;
 
             dtNextSendSms = new Date(new Date().getTime() + twoMins).toISOString();
   
-
             console.log('Pin#: ' + inputPinNo + " enabled!");
 
             const raspi = require('raspi');
