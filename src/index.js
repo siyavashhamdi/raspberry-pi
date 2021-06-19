@@ -83,15 +83,17 @@ const bootstrap = () => {
     let dtNextSendSms = null;
 
     const listenToButton = (inputPinNo) => {
-        button = new Gpio(inputPinNo, 'in', 'rising');
+        console.log("listen done to btn#: " + inputPinNo);
+
+        button = new Gpio(inputPinNo, 'in', 'rising'git up);
 
         button.watch(function(err, value) {
             console.log("watch btn#: " + inputPinNo);
             
             if(dtNextSendSms && new Date < dtNextSendSms) {
                 console.log("Date is not reached.");
-            }
                 return;
+            }
 
             dtNextSendSms = new Date(new Date().getTime() + twoMins).toISOString();
   
