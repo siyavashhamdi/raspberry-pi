@@ -85,7 +85,7 @@ const bootstrap = () => {
     const listenToButton = (inputPinNo) => {
         console.log("listen done to btn#: " + inputPinNo);
 
-        button = new Gpio(inputPinNo, 'in', 'rising'git up);
+        button = new Gpio(inputPinNo, 'in', 'rising');
 
         button.watch(function(err, value) {
             console.log("watch btn#: " + inputPinNo);
