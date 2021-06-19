@@ -78,6 +78,23 @@ const bootstrap = () => {
         const currentDate = new Date().toISOString();
         console.log(`[${currentDate}] { currPin: ${7}, value: ${buzzerVal} desc: 'buzzerVal' }`);
     }, 1000);
+
+    const listenToButton = (inputPinNo) => {
+        button = new Gpio(inputPinNo, 'in', 'rising');
+
+        button.watch(function(err, value) {
+            console.log('Pin#: ' + inputPinNo);
+        });
+    }
+
+    listenToButton(2);
+    listenToButton(3);
+    listenToButton(4);
+    listenToButton(17);
+    listenToButton(27);
+    listenToButton(22);
+    listenToButton(10);
+    listenToButton(9);
 }
 
 console.log("Started");
