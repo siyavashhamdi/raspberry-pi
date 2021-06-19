@@ -200,8 +200,12 @@ const bootstrap = () => {
 
                         setTimeout(() => {
                             // initReadyReceiveSms();
-                            sendSms('09032172257', 'سنسور حرکتی شماره 1 فعال شد!');
                             sendSms('09123242182', 'سنسور حرکتی شماره 1 فعال شد!');
+
+                                setTimeout(() => {
+                                // initReadyReceiveSms();
+                                sendSms('09032172257', 'سنسور حرکتی شماره 1 فعال شد!');
+                            }, 5000);
                         }, 5000);
                         // setCnmi();
                     }, 2000);
