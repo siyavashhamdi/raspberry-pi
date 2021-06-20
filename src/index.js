@@ -79,7 +79,7 @@ const bootstrap = () => {
     //     console.log(`[${currentDate}] { currPin: ${7}, value: ${buzzerVal} desc: 'buzzerVal' }`);
     // }, 1000);
 
-    const tenMins = 10 * 60  * 1000;
+    const tenMins = 10 * 60 * 1000;
     let dtNextSendSms = null;
 
     const raspi = require('raspi');
@@ -87,20 +87,22 @@ const bootstrap = () => {
     const serialPort = new Serial({ baudRate: 115200 });
 
     const listenToButton = (inputPinNo) => {
+        return; // Ignore it...
+
         console.log("listen done to btn#: " + inputPinNo);
 
         button = new Gpio(inputPinNo, 'in', 'rising');
 
-        button.watch(function(err, value) {
+        button.watch(function (err, value) {
             console.log("watch btn#: " + inputPinNo);
-            
-            if(dtNextSendSms && new Date < dtNextSendSms) {
+
+            if (dtNextSendSms && new Date < dtNextSendSms) {
                 console.log("Date is not reached.");
                 return;
             }
 
             dtNextSendSms = new Date(new Date(new Date().getTime() + tenMins).toISOString());
-  
+
             console.log('Pin#: ' + inputPinNo + " enabled!");
 
             serialPort.writeWithCr = (cmd) => {
@@ -202,7 +204,7 @@ const bootstrap = () => {
                             // initReadyReceiveSms();
                             sendSms('09123242182', 'سنسور حرکت شماره 1 فعال شد!');
 
-                                setTimeout(() => {
+                            setTimeout(() => {
                                 sendSms('09032172257', 'سنسور حرکت شماره 1 فعال شد!');
 
                                 setTimeout(() => {
