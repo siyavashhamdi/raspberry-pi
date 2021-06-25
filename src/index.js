@@ -6,7 +6,7 @@ const bootstrap = () => {
     // val: 1 => ON
     pin.rig1and3 = { no: 6, val: 0 };
     pin.rig2 = { no: 5, val: 1 };
-    pin.cooler = { no: 13, val: 1 };
+    pin.cooler = { no: 13, val: 0 };
 
     // setTimeout(() => {
     //     const output = new Gpio(pin.rig2.no, 'out');
@@ -52,8 +52,8 @@ const bootstrap = () => {
     //     console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
     // }, 5000);
 
-    const twoHalfHour = 0.5 * 60 * 60 * 1 * 1000;
-    const oneHour = 0.5 * 60 * 60 * 1 * 1000;
+    const twhoHour = 2 * 60 * 60 * 1 * 1000;
+    const oneHour = 1 * 60 * 60 * 1 * 1000;
 
     const switchCooler = () => {
         let nextTime = null;
@@ -63,7 +63,7 @@ const bootstrap = () => {
             nextTime = oneHour;
         } else {
             pin.cooler.val = 1;
-            nextTime = twoHalfHour;
+            nextTime = twhoHour;
         }
 
         const output = new Gpio(pin.cooler.no, 'out');
