@@ -52,8 +52,8 @@ const bootstrap = () => {
     //     console.log(`[${currentDate}] { currPin: ${pin.cooler.no}, value: ${pin.cooler.val}, desc: 'pinRigCooler' }`);
     // }, 5000);
 
-    const twoHalfHour = 2.5 * 60 * 60 * 1 * 1000;
-    const oneHour = 1 * 60 * 60 * 1 * 1000;
+    const twoHalfHour = 0.5 * 60 * 60 * 1 * 1000;
+    const oneHour = 0.5 * 60 * 60 * 1 * 1000;
 
     const switchCooler = () => {
         let nextTime = null;
