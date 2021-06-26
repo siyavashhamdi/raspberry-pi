@@ -26,7 +26,7 @@ const bootstrap = () => {
 
         const currentDate = new Date().toISOString();
         console.log(`[${ currentDate }] { currPin: ${ pin.rig1and3.no }, value: ${ pin.rig1and3.val }, desc: 'pinRig1and3' }`);
-    }, 10000);
+    }, 30000);
 }
 
 console.log("Started - Reset Rig 1 and 3");
