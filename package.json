@@ -13,6 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "start:reset_r1_3": "node src/index-reset-rig1_3.js",
+    "start:reset_r2": "node src/index-reset-rig2.js",
+    "start:cooler": "node src/index-reset-cooler.js",
     "start:playground": "node src/playground.js",
     "start:serialport": "node src/serial-port.js"
   },
