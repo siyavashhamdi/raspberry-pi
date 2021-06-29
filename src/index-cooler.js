@@ -97,6 +97,8 @@ const bootstrap = () => {
     const serialPort = new Serial({ baudRate: 115200 });
 
     const listenToButton = (inputPinNo) => {
+        return; // Ignore it...
+
         console.log("listen done to btn#: " + inputPinNo);
 
         button = new Gpio(inputPinNo, 'in', 'rising');
