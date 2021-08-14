@@ -15,7 +15,7 @@
     "start:cooler": "node src/index-cooler.js",
     "start:playground": "node src/playground.js",
     "start:serialport": "node src/serial-port.js",
-    "startx": "npm run build && node build/index.js"
+    "startx": "node build/index.js"
   },
   "author": "",
   "license": "ISC",
