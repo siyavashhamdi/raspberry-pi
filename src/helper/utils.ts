@@ -23,7 +23,7 @@ export class Utils {
         console.log(modifiedLogValue);
     }
 
-    public static convertKeyVal2Obj(keyVal: string[]) {
+    public static convertKeyVal2Obj(keyVal: string[]): any {
         const objKeyVal = {};
 
         for (const arg of keyVal) {

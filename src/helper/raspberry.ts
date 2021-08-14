@@ -42,7 +42,11 @@ export class Raspberry {
         device.writeSync(value);
     }
 
-    public coolerSwitchPeriodically(onByMin: number, offByMin: number) {
+    public coolerSwitchPeriodically(
+        onByMin: number,
+        offByMin: number,
+        callback?: (status: DeviceOutputStatus, nextTriggerAfterMin: number) => void,
+    ) {
         let currStatus = DeviceOutputStatus.off;
 
         const doInterval = () => {
@@ -57,7 +61,10 @@ export class Raspberry {
             }
 
             this.setDevice(this.device.output.cooler, currStatus);
-            Utils.consoleLog(`Cooler status => ${ currStatus }`);
+
+            if (callback) {
+                callback(currStatus, intervalByMin);
+            }
 
             setTimeout(() => {
                 doInterval();
