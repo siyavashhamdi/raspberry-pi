@@ -73,4 +73,12 @@ export class Raspberry {
 
         doInterval();
     }
+
+    public coolerSetOn() {
+        this.setDevice(this.device.output.cooler, DeviceOutputStatus.on);
+    }
+
+    public coolerSetOff() {
+        this.setDevice(this.device.output.cooler, DeviceOutputStatus.off);
+    }
 }

@@ -1,4 +1,5 @@
 import { Utils, Raspberry } from './helper';
+import { Cooler, Device } from './device';
 
 export async function bootstrap() {
     Utils.consoleLog('Application started');
@@ -8,23 +9,23 @@ export async function bootstrap() {
 
     Utils.consoleLog(JSON.stringify(objArgs));
 
-    const raspberry = new Raspberry();
-
-    if (objArgs?.cooler === 'periodically') {
-        const coolerOnByMin = +(process.env.COOLER_ON_BY_MIN || 120);
-        const coolerOffByMin = +(process.env.COOLER_ON_BY_MIN || 120);
-
-        Utils.consoleLog(`Cooler switch periodically started. coolerOnByMin: ${ coolerOnByMin }, coolerOffByMin: ${ coolerOffByMin }`);
-
-        raspberry.coolerSwitchPeriodically(
-            coolerOnByMin,
-            coolerOffByMin,
-            (status, nextTriggerAfterMin) => {
-                const dtNextTrigger = Utils.addSecondsToDate(new Date(), nextTriggerAfterMin * 60);
-                const formattedNextDt = Utils.formatDateTime(dtNextTrigger);
-
-                Utils.consoleLog(`Cooler current status is ${ status } and the next trigger will be on ${ formattedNextDt }`)
-            },
-        );
+    if (!objArgs?.command || !objArgs?.args) {
+        throw new Error('command or args is not provided!');
     }
+
+    const raspberry = new Raspberry();
+    let device: Device;
+
+    switch (objArgs?.command) {
+        case 'cooler': {
+            device = new Cooler(raspberry);
+            break;
+        }
+
+        default: {
+            throw new Error('No proper command found!');
+        }
+    }
+
+    device.manage(objArgs.args);
 }
