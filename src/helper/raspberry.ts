@@ -1,22 +1,3 @@
-interface Devices {
-    output: {
-        cooler: any,
-        rigGp1: any,
-        rigGp2: any,
-        periferal: any,
-    },
-    input: {
-        cooler: any,
-    },
-}
-
-enum DeviceOutputStatus {
-    off = 'off',
-    on = 'on',
-}
-
-import { Utils } from './utils';
-
 export class Raspberry {
     constructor() {
         var GPIO = require('onoff').Gpio;   //include onoff to interact with the GPIO
@@ -24,9 +5,9 @@ export class Raspberry {
         this.device = {
             output: {
                 cooler: new GPIO(13, 'out'),
-                rigGp1: new GPIO(1, 'out'),
-                rigGp2: new GPIO(1, 'out'),
-                periferal: new GPIO(1, 'out'),
+                rigGrpA: new GPIO(6, 'out'),
+                rigGrpB: new GPIO(5, 'out'),
+                mainBoard: new GPIO(26, 'out'),
             },
             input: {
                 cooler: new GPIO(1, 'in'),
@@ -34,7 +15,7 @@ export class Raspberry {
         };
     }
 
-    private device: Devices;
+    private device: MainDevices;
 
     private setDevice(device: any, status: DeviceOutputStatus) {
         const value = status === DeviceOutputStatus.off ? 0 : 1;
@@ -80,5 +61,33 @@ export class Raspberry {
 
     public coolerSetOff() {
         this.setDevice(this.device.output.cooler, DeviceOutputStatus.off);
+    }
+
+    public rigResetGroupA(turnOnAfterByMin: number) {
+        this.setDevice(this.device.output.rigGrpA, DeviceOutputStatus.off);
+
+        setTimeout(() => {
+            this.setDevice(this.device.output.rigGrpA, DeviceOutputStatus.on);
+        }, turnOnAfterByMin * 60 * 1000);
+    }
+
+    public rigResetGroupB(turnOnAfterByMin: number) {
+        this.setDevice(this.device.output.rigGrpB, DeviceOutputStatus.off);
+
+        setTimeout(() => {
+            this.setDevice(this.device.output.rigGrpB, DeviceOutputStatus.on);
+        }, turnOnAfterByMin * 60 * 1000);
+    }
+
+    public rigSetGroupA(status: DeviceOutputStatus) {
+        this.setDevice(this.device.output.rigGrpA, status);
+    }
+
+    public rigSetGroupB(status: DeviceOutputStatus) {
+        this.setDevice(this.device.output.rigGrpB, status);
+    }
+
+    public mainBoardReset() {
+        this.setDevice(this.device.output.mainBoard, DeviceOutputStatus.off);
     }
 }

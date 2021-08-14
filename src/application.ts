@@ -1,5 +1,6 @@
 import { Utils, Raspberry } from './helper';
-import { Cooler, Device } from './device';
+import { Cooler, Device, Rig } from './device';
+import { MainBoard } from './device/main-board';
 
 export async function bootstrap() {
     Utils.consoleLog('Application started');
@@ -22,10 +23,20 @@ export async function bootstrap() {
             break;
         }
 
+        case 'rig': {
+            device = new Rig(raspberry);
+            break;
+        }
+
+        case 'board': {
+            device = new MainBoard(raspberry);
+            break;
+        }
+
         default: {
             throw new Error('No proper command found!');
         }
     }
 
-    device.manage(objArgs.args);
+    device.manageCommand(objArgs.args);
 }

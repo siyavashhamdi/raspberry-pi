@@ -6,7 +6,7 @@ export class Cooler implements Device {
         this.raspberry = raspberry;
     }
 
-    public manage = (params: string) => {
+    public manageCommand = (params: string) => {
         switch (params) {
             case 'periodically': {
                 this.periodically();

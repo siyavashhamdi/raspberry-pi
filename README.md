@@ -17,3 +17,12 @@
         - sudo npm run start -- --command=cooler --args=periodically
         - sudo npm run start -- --command=cooler --args=set-on
         - sudo npm run start -- --command=cooler --args=set-off
+        
+        - sudo npm run start -- --command=rig --args=group-a,reset
+        - sudo npm run start -- --command=rig --args=group-b,reset
+        - sudo npm run start -- --command=rig --args=group-a,set-on
+        - sudo npm run start -- --command=rig --args=group-b,set-on
+        - sudo npm run start -- --command=rig --args=group-a,set-off
+        - sudo npm run start -- --command=rig --args=group-b,set-off
+
+        - sudo npm run start -- --command=board --args=reset
