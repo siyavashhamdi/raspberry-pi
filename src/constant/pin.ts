@@ -5,7 +5,7 @@ const buzzer = [7];
 const key = [8];
 const simReset = [18];
 
-exports.default = {
+export default {
     input,
     output,
     indicator,
