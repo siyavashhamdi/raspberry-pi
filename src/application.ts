@@ -7,7 +7,7 @@ export async function bootstrap() {
     Utils.consoleLog(JSON.stringify(objArgs));
 
     const raspberry = new Raspberry();
-    raspberry.coolerSwitchPeriodically(120, 30);
+    raspberry.coolerSwitchPeriodically(1, 0.5);
 
     Utils.consoleLog("Hi Rasp");
 }
