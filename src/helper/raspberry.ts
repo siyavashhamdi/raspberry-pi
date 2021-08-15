@@ -1,3 +1,6 @@
+import { DeviceOutputStatus } from '../enum';
+import { MainDevices } from '../type';
+
 export class Raspberry {
   constructor() {
     const GPIO = require('onoff').Gpio;   //include onoff to interact with the GPIO

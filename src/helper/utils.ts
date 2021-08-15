@@ -1,4 +1,4 @@
-import moment from 'moment-timezone';
+import * as moment from 'moment-timezone';
 
 export class Utils {
   public static zeroPad = (num: unknown, places: number): string => String(num).padStart(places, '0')
@@ -23,7 +23,7 @@ export class Utils {
     console.log(modifiedLogValue);
   }
 
-  public static convertKeyVal2Obj(keyVal: string[]): any {
+  public static convertKeyVal2Obj(keyVal: Array<string>): any {
     const objKeyVal = {};
 
     for (const arg of keyVal) {

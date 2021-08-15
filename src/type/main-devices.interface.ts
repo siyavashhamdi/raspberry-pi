@@ -1,4 +1,4 @@
-interface MainDevices {
+export interface MainDevices {
   output: {
     cooler: any,
     rigGrpA: any,

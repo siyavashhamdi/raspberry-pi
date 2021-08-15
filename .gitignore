@@ -7,3 +7,10 @@
 
 # Environment
 .env
+.vscode
+.idea
+.DS_Store
+
+# Log
+npm-debug.log
+logs/*

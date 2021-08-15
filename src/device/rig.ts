@@ -1,5 +1,6 @@
 import { Raspberry, Utils } from '../helper';
 import { Device } from './device.interface';
+import { DeviceOutputStatus } from '../enum';
 
 export class Rig implements Device {
   constructor(raspberry: Raspberry) {
@@ -62,21 +63,21 @@ export class Rig implements Device {
 
   private setOnGroupA = () => {
     this.raspberry.rigSetGroupA(DeviceOutputStatus.on);
-    Utils.consoleLog(`Rig group A is set to 'ON'`);
+    Utils.consoleLog('Rig group A is set to \'ON\'');
   };
 
   private setOffGroupA = () => {
     this.raspberry.rigSetGroupA(DeviceOutputStatus.off);
-    Utils.consoleLog(`Rig group A is set to 'OFF'`);
+    Utils.consoleLog('Rig group A is set to \'OFF\'');
   };
 
   private setOnGroupB = () => {
     this.raspberry.rigSetGroupB(DeviceOutputStatus.on);
-    Utils.consoleLog(`Rig group B is set to 'ON'`);
+    Utils.consoleLog('Rig group B is set to \'ON\'');
   };
 
   private setOffGroupB = () => {
     this.raspberry.rigSetGroupB(DeviceOutputStatus.off);
-    Utils.consoleLog(`Rig group B is set to 'OFF'`);
+    Utils.consoleLog('Rig group B is set to \'OFF\'');
   };
 }

@@ -1,1 +1,1 @@
-export * from '../enum/device-output-status.enum';
+export * from './device-output-status.enum';
