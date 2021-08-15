@@ -1,10 +1,10 @@
+import * as OnOff from 'onoff';
 import { DeviceOutputStatus } from '../enum';
 import { MainDevices } from '../type';
 
 export class Raspberry {
   constructor() {
-    // eslint-disable-next-line global-require
-    const GPIO = require('onoff').Gpio; // include onoff to interact with the GPIO
+    const GPIO = OnOff.Gpio;
 
     this.device = {
       output: {

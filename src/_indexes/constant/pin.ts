@@ -6,10 +6,10 @@ const key = [8];
 const simReset = [18];
 
 export default {
-    input,
-    output,
-    indicator,
-    buzzer,
-    key,
-    simReset,
+  input,
+  output,
+  indicator,
+  buzzer,
+  key,
+  simReset,
 };
