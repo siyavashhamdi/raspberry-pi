@@ -20,6 +20,7 @@ export class Utils {
     const dateTime = this.formatDateTime(new Date());
     const modifiedLogValue = `[${ dateTime }] : ${ logValue }`;
 
+    // eslint-disable-next-line no-console
     console.log(modifiedLogValue);
   }
 
