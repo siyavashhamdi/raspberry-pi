@@ -22,7 +22,7 @@ export class MainBoard implements Device {
   private raspberry: Raspberry;
 
   private reset = () => {
-    Utils.consoleLog(`The main board is reset. It will be alive depends on the protectors delay.`);
+    Utils.consoleLog('The main board is reset. It will be alive depends on the protectors delay.');
 
     setTimeout(() => {
       this.raspberry.mainBoardReset();

@@ -13,8 +13,11 @@ plugins:
   - import
 
 settings:
-  import/resolver:
-    typescript:
+  import/resolver: {
+    node: {
+      extensions: [".js", ".jsx", ".ts", ".tsx"]
+    }
+  }
 
 rules:
   # Disabled for performance reasons

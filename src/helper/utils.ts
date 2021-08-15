@@ -1,7 +1,7 @@
 import * as moment from 'moment-timezone';
 
 export class Utils {
-  public static zeroPad = (num: unknown, places: number): string => String(num).padStart(places, '0')
+  public static zeroPad = (num: unknown, places: number): string => String(num).padStart(places, '0');
 
   public static formatDateTime(dateTime: number | Date, timezone = 'Asia/Tehran'): string {
     const unixTs = typeof dateTime === 'number' ? dateTime : dateTime.getTime();
