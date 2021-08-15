@@ -2,30 +2,30 @@ import { Raspberry, Utils } from '../helper';
 import { Device } from './device.interface';
 
 export class MainBoard implements Device {
-    constructor(raspberry: Raspberry) {
-        this.raspberry = raspberry;
+  constructor(raspberry: Raspberry) {
+    this.raspberry = raspberry;
+  }
+
+  public manageCommand = (params: string) => {
+    switch (params) {
+      case 'reset': {
+        this.reset();
+        break;
+      }
+
+      default: {
+        throw new Error('No proper param found for cooler');
+      }
     }
+  };
 
-    public manageCommand = (params: string) => {
-        switch (params) {
-            case 'reset': {
-                this.reset();
-                break;
-            }
+  private raspberry: Raspberry;
 
-            default: {
-                throw new Error('No proper param found for cooler');
-            }
-        }
-    };
+  private reset = () => {
+    Utils.consoleLog(`The main board is reset. It will be alive depends on the protectors delay.`);
 
-    private raspberry: Raspberry;
-
-    private reset = () => {
-        Utils.consoleLog(`The main board is reset. It will be alive depends on the protectors delay.`);
-
-        setTimeout(() => {
-            this.raspberry.mainBoardReset();
-        }, 2000);
-    }
+    setTimeout(() => {
+      this.raspberry.mainBoardReset();
+    }, 2000);
+  };
 }
