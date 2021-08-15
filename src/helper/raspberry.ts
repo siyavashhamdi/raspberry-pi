@@ -45,7 +45,7 @@ export class Raspberry {
         intervalByMin = offByMin;
       }
 
-      this.setDevice(this.device.output.cooler, currStatus);
+      // this.setDevice(this.device.output.cooler, currStatus);
 
       if (callback) {
         callback(currStatus, intervalByMin);
