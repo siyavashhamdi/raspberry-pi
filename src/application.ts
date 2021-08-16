@@ -3,9 +3,9 @@ import { Cooler, Device, Rig } from './device';
 import { MainBoard } from './device/main-board';
 
 export async function bootstrap() {
-  setTimeout(() => {
-    Utils.rebootMachine();
-  }, 120 * 1000);
+  // setTimeout(() => {
+  //   Utils.rebootMachine();
+  // }, 120 * 1000);
 
   // eslint-disable-next-line no-console
   console.log('continue');
