@@ -1,10 +1,19 @@
-import { Utils, Raspberry } from './helper';
+import { Utils, Raspberry, Onvif } from './helper';
 import { Cooler, Device, Rig } from './device';
 import { MainBoard } from './device/main-board';
 
 export async function bootstrap() {
   Utils.consoleLog('Application started');
   Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
+
+  Onvif.takeSnapshot();
+
+  const x = 1;
+
+  if (x === 1) {
+    return;
+  }
+
   Utils.checkConnectionAvailability(0, 10, (isAvailable) => {
     if (!isAvailable) {
       Utils.consoleLog('Application will be restarted because of internet loss in 10 seconds...');

@@ -2,7 +2,7 @@
 /* eslint-disable global-require */
 
 export class Onvif {
-  public takeSnapshot() {
+  public static takeSnapshot() {
     const onvif = require('node-onvif');
 
     console.log('Start the discovery process.');
