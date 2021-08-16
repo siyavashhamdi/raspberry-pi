@@ -127,6 +127,6 @@ export class Utils {
       if (callback) {
         callback();
       }
-    }, 60 * 60 * 1000);
+    }, 10 * 60 * 1000);
   }
 }
