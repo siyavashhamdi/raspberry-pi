@@ -107,4 +107,8 @@ export class Utils {
     //   Utils.rebootMachine();
     // }
   }
+
+  public static async makeAppAlive(): Promise<void> {
+    setInterval(() => { }, 60 * 60 * 1000);
+  }
 }

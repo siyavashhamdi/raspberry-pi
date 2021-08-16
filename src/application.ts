@@ -3,6 +3,8 @@ import { Cooler, Device, Rig } from './device';
 import { MainBoard } from './device/main-board';
 
 export async function bootstrap() {
+  Utils.makeAppAlive();
+
   // setTimeout(() => {
   //   Utils.rebootMachine();
   // }, 120 * 1000);
