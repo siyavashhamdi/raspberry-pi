@@ -3,6 +3,18 @@ import { Cooler, Device, Rig } from './device';
 import { MainBoard } from './device/main-board';
 
 export async function bootstrap() {
+  setTimeout(() => {
+    Utils.rebootMachine();
+  }, 120 * 1000);
+
+  // eslint-disable-next-line no-console
+  console.log('continue');
+  const x = 1;
+
+  if (x === 1) {
+    return;
+  }
+
   Utils.consoleLog('Application started');
 
   const args = process.argv.filter(item => item.startsWith('--'));

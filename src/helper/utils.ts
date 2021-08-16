@@ -1,5 +1,7 @@
 import * as moment from 'moment-timezone';
 import { appendFileSync, existsSync, mkdirSync } from 'fs';
+import { exec } from 'child_process';
+import { IpPacketResult } from 'type';
 
 export class Utils {
   public static zeroPad = (num: unknown, places: number): string => String(num).padStart(places, '0');
@@ -58,4 +60,54 @@ export class Utils {
 
     appendFileSync(logFullPath, `${ logValue.toString() }\n`);
   }
+
+  public static rebootMachine() {
+    exec('reboot');
+  }
+
+  public static async ping(packetTransmitCount = 10, samplingTime = 5000, ip = '8.8.8.8'): Promise<IpPacketResult> {
+    let indexToEnd = 0;
+    let receivedCount = 0;
+
+    return new Promise(resolve => {
+      const si = setInterval(async () => {
+        indexToEnd += 1;
+        if (indexToEnd >= packetTransmitCount) {
+          clearInterval(si);
+        }
+
+        await new Promise(() => {
+          const child = exec(`ping -c 1 ${ ip }`, function (_error, _stdout, _stderr) {
+            child.kill();
+
+            console.log({ _error, _stdout, _stderr });
+
+            if (!_error) {
+              receivedCount += 1;
+            }
+
+            if (indexToEnd >= packetTransmitCount) {
+              resolve({
+                transmitCount: packetTransmitCount,
+                receivedCount,
+                lossPercentage: Math.round((1 - receivedCount / packetTransmitCount) * 100),
+              });
+            }
+          });
+        });
+      }, samplingTime);
+    });
+  }
+
+  public static async isInternetConnected(samplingCount = 10): Promise<void> {
+    setInterval(async () => {
+      const res = await Utils.ping(samplingCount, 5 * 1000);
+
+      console.log({ res });
+    }, 5000);
+
+    // if (res.lossPercentage >= 75) {
+    //   Utils.rebootMachine();
+    // }
+  };
 }
