@@ -118,7 +118,6 @@ export class Utils {
         Utils.consoleLog('Debug: Inside if, SL: 2');
 
         if (callback) {
-          Utils.consoleLog('Debug: Inside if, SL: 3');
           callback(resPing.lossPercentage < 75);
         }
       }
