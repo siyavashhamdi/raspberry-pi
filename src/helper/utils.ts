@@ -110,7 +110,7 @@ export class Utils {
 
       Utils.consoleLog(`Debug: currMinutes: ${ currMinutes }`);
 
-      if (currMinutes === checkEveryMinOf && lastCheckedMinute !== currMinutes) {
+      if (currMinutes !== checkEveryMinOf) {
         lastCheckedMinute = currMinutes;
 
         const resPing = await Utils.ping(samplingCount, 5 * 1000);
