@@ -100,12 +100,20 @@ export class Utils {
 
   public static async isInternetConnected(samplingCount = 10): Promise<void> {
     setInterval(async () => {
-      await Utils.ping(samplingCount, 5 * 1000);
-    }, 5000);
+      const currMinutes = new Date().getMinutes();
 
-    // if (res.lossPercentage >= 75) {
-    //   Utils.rebootMachine();
-    // }
+      Utils.consoleLog(`Currnet minute: ${ currMinutes }`);
+
+      if (currMinutes === 0) {
+        const resPing = await Utils.ping(samplingCount, 5 * 1000);
+
+        if (resPing.lossPercentage >= 75) {
+          setTimeout(() => {
+            Utils.rebootMachine();
+          }, 30 * 1000);
+        }
+      }
+    }, 10 * 1000);
   }
 
   public static async makeAppAlive(callback?: () => void): Promise<void> {
