@@ -4,6 +4,16 @@ import { MainBoard } from './device/main-board';
 
 export async function bootstrap() {
   Utils.consoleLog('Application started');
+  const res = Utils.ping();
+
+  Utils.consoleLog(JSON.stringify(res));
+
+  const x = 1;
+
+  if (x === 1) {
+    return
+  }
+
   Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
   Utils.checkConnectionAvailability(17, 10, (isAvailable) => {
     if (!isAvailable) {
