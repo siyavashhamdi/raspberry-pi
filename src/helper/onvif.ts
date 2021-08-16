@@ -2,7 +2,7 @@
 /* eslint-disable global-require */
 
 import * as onvif from 'node-onvif';
-import { appendFileSync, existsSync, mkdirSync } from 'fs';
+// import { appendFileSync, existsSync, mkdirSync } from 'fs';
 
 export class Onvif {
   public static device() {
