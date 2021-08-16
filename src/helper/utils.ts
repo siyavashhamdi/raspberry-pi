@@ -108,14 +108,10 @@ export class Utils {
     setInterval(async () => {
       const currMinutes = new Date().getMinutes();
 
-      Utils.consoleLog(`Debug: currMinutes: ${ currMinutes }`);
-
       if (currMinutes === checkEveryMinOf && lastCheckedMinute !== currMinutes) {
         lastCheckedMinute = currMinutes;
 
-        Utils.consoleLog('Debug: Inside if, SL: 1');
         const resPing = await Utils.ping(samplingCount, 5 * 1000);
-        Utils.consoleLog('Debug: Inside if, SL: 2');
 
         if (callback) {
           callback(resPing.lossPercentage < 75);
@@ -125,7 +121,7 @@ export class Utils {
   }
 
   public static async makeAppAlive(callback?: () => void): Promise<void> {
-    // Heart beats every 1 hour
+    // Heart beat every 1 hour
 
     setInterval(() => {
       if (callback) {
