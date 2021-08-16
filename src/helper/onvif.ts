@@ -2,6 +2,7 @@
 /* eslint-disable global-require */
 
 import * as onvif from 'node-onvif';
+import { writeFileSync } from 'fs';
 
 export class Onvif {
   public static device() {
@@ -22,17 +23,23 @@ export class Onvif {
   }
 
   public static takeSnapshot() {
-    console.log('Start the discovery process.');
-    // Find the ONVIF network cameras.
-    // It will take about 3 seconds.
-    onvif.startProbe().then((device_info_list: any) => {
-      console.log(`${ device_info_list.length } devices were found.`);
-      // Show the device name and the URL of the end point.
-      device_info_list.forEach((info: any) => {
-        console.log(`- ${ info.urn }`);
-        console.log(`  - ${ info.name }`);
-        console.log(`  - ${ info.xaddrs[0] }`);
-      });
+    // Create an OnvifDevice object
+    const device = new onvif.OnvifDevice({
+      xaddr: 'http://192.168.10.14:10080/onvif/device_service',
+      user: 'admin',
+      pass: '123456',
+    });
+
+    // Initialize the OnvifDevice object
+    device.init().then(() => {
+      // Get the data of the snapshot
+      console.log('fetching the data of the snapshot...');
+
+      return device.fetchSnapshot();
+    }).then((res: any) => {
+      // Save the data to a file
+      writeFileSync('snapshot.jpg', res.body, { encoding: 'binary' });
+      console.log('Done!');
     }).catch((error: any) => {
       console.error(error);
     });
