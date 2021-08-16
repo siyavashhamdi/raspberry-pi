@@ -69,18 +69,17 @@ export class Utils {
     let indexToEnd = 0;
     let receivedCount = 0;
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const si = setInterval(async () => {
         indexToEnd += 1;
+
         if (indexToEnd >= packetTransmitCount) {
           clearInterval(si);
         }
 
         await new Promise(() => {
-          const child = exec(`ping -c 1 ${ ip }`, function (_error, _stdout, _stderr) {
+          const child = exec(`ping -c 1 ${ ip }`, (_error, _stdout, _stderr) => {
             child.kill();
-
-            console.log({ _error, _stdout, _stderr });
 
             if (!_error) {
               receivedCount += 1;
@@ -90,7 +89,7 @@ export class Utils {
               resolve({
                 transmitCount: packetTransmitCount,
                 receivedCount,
-                lossPercentage: Math.round((1 - receivedCount / packetTransmitCount) * 100),
+                lossPercentage: Math.round((1 - (receivedCount / packetTransmitCount)) * 100),
               });
             }
           });
@@ -101,13 +100,11 @@ export class Utils {
 
   public static async isInternetConnected(samplingCount = 10): Promise<void> {
     setInterval(async () => {
-      const res = await Utils.ping(samplingCount, 5 * 1000);
-
-      console.log({ res });
+      await Utils.ping(samplingCount, 5 * 1000);
     }, 5000);
 
     // if (res.lossPercentage >= 75) {
     //   Utils.rebootMachine();
     // }
-  };
+  }
 }
