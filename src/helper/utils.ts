@@ -17,17 +17,17 @@ export class Utils {
     return addedDate.toDate();
   }
 
-    public static convertKeyVal2Obj(keyVal: Array<string>): any {
-        const objKeyVal = {};
+  public static convertKeyVal2Obj(keyVal: Array<string>): any {
+    const objKeyVal = {};
 
-        for (const arg of keyVal) {
-            const [key, val] = arg.substring(2).split('=');
+    for (const arg of keyVal) {
+      const [key, val] = arg.substring(2).split('=');
 
-            Object.assign(objKeyVal, { [key]: val });
-        }
-
-        return objKeyVal;
+      Object.assign(objKeyVal, { [key]: val });
     }
+
+    return objKeyVal;
+  }
 
   public static consoleLog(logValue: string | number): void {
     const dateTime = this.formatDateTime(new Date());
@@ -36,26 +36,26 @@ export class Utils {
     // eslint-disable-next-line no-console
     console.log(modifiedLogValue);
 
-      Utils.fileLog(modifiedLogValue);
+    Utils.fileLog(modifiedLogValue);
   }
 
-    public static async fileLog(logValue: string | number): Promise<void> {
-        let logDirPath = require?.main?.path;
+  public static async fileLog(logValue: string | number): Promise<void> {
+    let logDirPath = require?.main?.path;
 
-        if (!logDirPath) {
-            return;
-        }
+    if (!logDirPath) {
+      return;
+    }
 
-      logDirPath += '/log/';
+    logDirPath += '/log/';
 
-      if (!existsSync(logDirPath)) {
-          mkdirSync(logDirPath);
-      }
+    if (!existsSync(logDirPath)) {
+      mkdirSync(logDirPath);
+    }
 
-      const todayDate = moment(new Date()).tz('Asia/Tehran').format('yyyyMMDD');
-      const logFileName = `${ todayDate }.log`;
-      const logFullPath = logDirPath + logFileName;
+    const todayDate = moment(new Date()).tz('Asia/Tehran').format('yyyyMMDD');
+    const logFileName = `${ todayDate }.log`;
+    const logFullPath = logDirPath + logFileName;
 
-      appendFileSync(logFullPath, `${ logValue.toString() }\n`);
+    appendFileSync(logFullPath, `${ logValue.toString() }\n`);
   }
 }
