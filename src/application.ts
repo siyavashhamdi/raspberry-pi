@@ -6,7 +6,7 @@ export async function bootstrap() {
   Utils.consoleLog('Application started');
   Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
 
-  Onvif.device();
+  Onvif.takeSnapshot();
 
   const x = 1;
 
