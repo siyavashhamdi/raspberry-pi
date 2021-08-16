@@ -110,12 +110,15 @@ export class Utils {
 
       Utils.consoleLog(`Debug: currMinutes: ${ currMinutes }`);
 
-      if (currMinutes !== checkEveryMinOf) {
+      if (currMinutes === checkEveryMinOf && lastCheckedMinute !== currMinutes) {
         lastCheckedMinute = currMinutes;
 
+        Utils.consoleLog('Debug: Inside if, SL: 1');
         const resPing = await Utils.ping(samplingCount, 5 * 1000);
+        Utils.consoleLog('Debug: Inside if, SL: 2');
 
         if (callback) {
+          Utils.consoleLog('Debug: Inside if, SL: 3');
           callback(resPing.lossPercentage < 75);
         }
       }

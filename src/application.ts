@@ -5,7 +5,7 @@ import { MainBoard } from './device/main-board';
 export async function bootstrap() {
   Utils.consoleLog('Application started');
   Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
-  Utils.checkConnectionAvailability(13, 10, (isAvailable) => {
+  Utils.checkConnectionAvailability(17, 10, (isAvailable) => {
     if (!isAvailable) {
       Utils.consoleLog('Application will be restarted because of internet loss in 10 seconds...');
 
