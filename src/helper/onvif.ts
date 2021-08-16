@@ -25,7 +25,7 @@ export class Onvif {
   public static takeSnapshot() {
     // Create an OnvifDevice object
     const device = new onvif.OnvifDevice({
-      xaddr: 'http://192.168.1.160:554/onvif/device_service',
+      xaddr: 'rtsp://192.168.1.88:554/H264?ch=1&amp;subtype=1',
       user: 'admin',
       pass: '2690fF2690',
     });
