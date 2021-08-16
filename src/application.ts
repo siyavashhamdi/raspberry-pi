@@ -12,6 +12,8 @@ export async function bootstrap() {
       setTimeout(() => {
         Utils.rebootMachine();
       }, 30 * 1000);
+    } else {
+      Utils.consoleLog('Internet connection is available...');
     }
   });
 
