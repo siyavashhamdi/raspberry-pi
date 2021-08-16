@@ -10,7 +10,7 @@ export class Onvif {
     const device = new onvif.OnvifDevice({
       xaddr: 'http://192.168.1.160:80/onvif/device_service',
       user: 'admin',
-      pass: '2690fF2690',
+      pass: '2690fF2691',
     });
 
     // Initialize the OnvifDevice object
