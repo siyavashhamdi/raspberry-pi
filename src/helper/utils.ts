@@ -98,19 +98,25 @@ export class Utils {
     });
   }
 
-  public static async isInternetConnected(samplingCount = 10): Promise<void> {
+  public static async checkConnectionAvailability(
+    checkEveryMinOf = 0,
+    samplingCount = 10,
+    callback?: (isAvailable: boolean) => void,
+  ): Promise<void> {
+    let lastCheckedMinute = -1;
+
     setInterval(async () => {
       const currMinutes = new Date().getMinutes();
 
-      Utils.consoleLog(`Currnet minute: ${ currMinutes }`);
+      Utils.consoleLog(`Debug: currMinutes: ${ currMinutes }`);
 
-      if (currMinutes === 0) {
+      if (currMinutes === checkEveryMinOf && lastCheckedMinute !== currMinutes) {
+        lastCheckedMinute = currMinutes;
+
         const resPing = await Utils.ping(samplingCount, 5 * 1000);
 
-        if (resPing.lossPercentage >= 75) {
-          setTimeout(() => {
-            Utils.rebootMachine();
-          }, 30 * 1000);
+        if (callback) {
+          callback(resPing.lossPercentage < 75);
         }
       }
     }, 10 * 1000);

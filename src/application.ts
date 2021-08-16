@@ -5,6 +5,15 @@ import { MainBoard } from './device/main-board';
 export async function bootstrap() {
   Utils.consoleLog('Application started');
   Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
+  Utils.checkConnectionAvailability(10, 10, (isAvailable) => {
+    if (!isAvailable) {
+      Utils.consoleLog('Application will be restarted because of internet loss in 10 seconds...');
+
+      setTimeout(() => {
+        Utils.rebootMachine();
+      }, 30 * 1000);
+    }
+  });
 
   const args = process.argv.filter(item => item.startsWith('--'));
   const objArgs = Utils.convertKeyVal2Obj(args);
