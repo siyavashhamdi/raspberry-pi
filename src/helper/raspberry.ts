@@ -60,9 +60,11 @@ export class Raspberry {
       if (currStatus === DeviceOutputStatus.off) {
         currStatus = DeviceOutputStatus.on;
         intervalByMin = onByMin;
+        this.coolerSetOn();
       } else {
         currStatus = DeviceOutputStatus.off;
         intervalByMin = offByMin;
+        this.coolerSetOff();
       }
 
       if (callback) {
