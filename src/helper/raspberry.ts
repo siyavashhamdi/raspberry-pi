@@ -1,5 +1,4 @@
 import * as OnOff from 'onoff';
-import rpio from 'rpio';
 import { DeviceOutputStatus } from '../enum';
 import { MainDevices } from '../type';
 
@@ -109,32 +108,6 @@ export class Raspberry {
 
   public mainBoardReset() {
     this.setDevice(this.device.output.mainBoard, DeviceOutputStatus.off);
-  }
-
-  public static readFromPinListener(pinNo: number) {
-    setInterval(() => {
-      // eslint-disable-next-line no-console
-      console.log('Set Interval');
-
-      rpio.open(pinNo, rpio.INPUT, rpio.PULL_UP);
-      rpio.poll(15, Raspberry.pollcb, rpio.POLL_LOW);
-    }, 5000);
-  }
-
-  private static pollcb(pin: number) {
-    /*
-     * Wait for a small period of time to avoid rapid changes which
-     * can't all be caught with the 1ms polling frequency.  If the
-     * pin is no longer down after the wait then ignore it.
-     */
-    rpio.msleep(20);
-
-    if (rpio.read(pin)) {
-      return;
-    }
-
-    // eslint-disable-next-line no-console
-    console.log('DEBUG: Button pressed on pin P%d', pin);
   }
 
   public pollMotionDetectionA(callback: () => void) {
