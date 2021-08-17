@@ -16,7 +16,7 @@
     "dotenv": "10.0.0",
     "moment-timezone": "0.5.33",
     "node-onvif": "0.1.7",
-    "onoff": "6.0.2",
+    "onoff": "6.0.3",
     "raspi-serial": "6.0.0",
     "serialport": "9.0.7"
   },
