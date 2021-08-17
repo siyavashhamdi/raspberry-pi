@@ -34,6 +34,7 @@ rules:
   '@typescript-eslint/promise-function-async': off
   '@typescript-eslint/restrict-plus-operands': off
   '@typescript-eslint/no-implied-eval': off
+  'react/require-extension': off
 
   '@typescript-eslint/indent': off
   '@typescript-eslint/array-type': [error, { "default": "generic", "readonly": "generic" }]
