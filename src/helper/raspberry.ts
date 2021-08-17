@@ -1,10 +1,15 @@
 import * as OnOff from 'onoff';
+import rpio from 'rpio';
 import { DeviceOutputStatus } from '../enum';
 import { MainDevices } from '../type';
 
 export class Raspberry {
   constructor() {
     const GPIO = OnOff.Gpio;
+
+    if (!GPIO.accessible) {
+      throw new Error('Gpio functionality is not accessible on this computer!');
+    }
 
     this.device = {
       output: {
@@ -14,7 +19,7 @@ export class Raspberry {
         mainBoard: new GPIO(26, 'out'),
       },
       input: {
-        cooler: new GPIO(1, 'in'),
+        motionDetectionA: new GPIO(4, 'in', 'rising', { debounceTimeout: 10 }),
       },
     };
   }
@@ -25,6 +30,19 @@ export class Raspberry {
     const value = status === DeviceOutputStatus.off ? 0 : 1;
 
     device.writeSync(value);
+  }
+
+  private getDevice(device: any, callback: () => void) {
+    device.watch((err: any, value: any) => {
+      // eslint-disable-next-line no-console
+      console.log(`value is: ${ value }`);
+
+      if (err) {
+        throw err;
+      }
+
+      callback();
+    });
   }
 
   public coolerSwitchPeriodically(
@@ -44,8 +62,6 @@ export class Raspberry {
         currStatus = DeviceOutputStatus.off;
         intervalByMin = offByMin;
       }
-
-      // this.setDevice(this.device.output.cooler, currStatus);
 
       if (callback) {
         callback(currStatus, intervalByMin);
@@ -93,5 +109,37 @@ export class Raspberry {
 
   public mainBoardReset() {
     this.setDevice(this.device.output.mainBoard, DeviceOutputStatus.off);
+  }
+
+  public static readFromPinListener(pinNo: number) {
+    setInterval(() => {
+      // eslint-disable-next-line no-console
+      console.log('Set Interval');
+
+      rpio.open(pinNo, rpio.INPUT, rpio.PULL_UP);
+      rpio.poll(15, Raspberry.pollcb, rpio.POLL_LOW);
+    }, 5000);
+  }
+
+  private static pollcb(pin: number) {
+    /*
+     * Wait for a small period of time to avoid rapid changes which
+     * can't all be caught with the 1ms polling frequency.  If the
+     * pin is no longer down after the wait then ignore it.
+     */
+    rpio.msleep(20);
+
+    if (rpio.read(pin)) {
+      return;
+    }
+
+    // eslint-disable-next-line no-console
+    console.log('DEBUG: Button pressed on pin P%d', pin);
+  }
+
+  public pollMotionDetectionA(callback: () => void) {
+    this.getDevice(this.device.input.motionDetectionA, () => {
+      callback();
+    });
   }
 }

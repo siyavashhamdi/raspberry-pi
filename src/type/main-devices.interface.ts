@@ -6,6 +6,6 @@ export interface MainDevices {
     mainBoard: any,
   },
   input: {
-    cooler: any,
+    motionDetectionA: any,
   },
 }
