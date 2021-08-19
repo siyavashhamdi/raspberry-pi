@@ -40,7 +40,7 @@ export class Rig implements Device {
       }
 
       default: {
-        throw new Error('No proper param found for cooler');
+        throw new Error('No proper param found');
       }
     }
   };
