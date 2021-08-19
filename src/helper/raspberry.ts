@@ -4,21 +4,21 @@ import { MainDevices } from '../type';
 
 export class Raspberry {
   constructor() {
-    const GPIO = OnOff.Gpio;
+    const { Gpio, Direction } = OnOff;
 
-    if (!GPIO.accessible) {
+    if (!Gpio.accessible) {
       throw new Error('Gpio functionality is not accessible on this computer!');
     }
 
     this.device = {
       output: {
-        cooler: new GPIO(13, 'out'),
-        rigGrpA: new GPIO(1, 'out'), // ???
-        rigGrpB: new GPIO(1, 'out'), // ???
-        mainBoard: new GPIO(1, 'out'), // ???
+        cooler: new Gpio(13, Direction.Out 'out'),
+        rigGrpA: new Gpio(1, 'out'), // ???
+        rigGrpB: new Gpio(1, 'out'), // ???
+        mainBoard: new Gpio(1, 'out'), // ???
       },
       input: {
-        motionDetectionA: new GPIO(1, 'in', 'rising'), // new GPIO(13, 'in', 'rising', { debounceTimeout: 10 }),
+        motionDetectionA: new Gpio(1, 'in', 'rising'), // new Gpio(13, 'in', 'rising', { debounceTimeout: 10 }),
       },
     };
   }
