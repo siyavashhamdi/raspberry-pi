@@ -14,8 +14,8 @@ export class Raspberry {
       output: {
         cooler: new GPIO(13, 'out'),
         rigGrpA: new GPIO(6, 'out'),
-        rigGrpB: new GPIO(5, 'out'),
-        mainBoard: new GPIO(1, 'out'),
+        rigGrpB: new GPIO(1, 'out'),
+        mainBoard: new GPIO(26, 'out'),
       },
       input: {
         motionDetectionA: new GPIO(13, 'in', 'rising'), // new GPIO(13, 'in', 'rising', { debounceTimeout: 10 }),
