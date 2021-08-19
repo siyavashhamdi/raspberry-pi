@@ -13,12 +13,12 @@ export class Raspberry {
     this.device = {
       output: {
         cooler: new GPIO(13, 'out'),
-        rigGrpA: new GPIO(1, 'out'),
-        rigGrpB: new GPIO(1, 'out'),
+        rigGrpA: new GPIO(6, 'out'),
+        rigGrpB: new GPIO(5, 'out'),
         mainBoard: new GPIO(1, 'out'),
       },
       input: {
-        motionDetectionA: new GPIO(1, 'in', 'rising', { debounceTimeout: 1000 }),
+        motionDetectionA: new GPIO(13, 'in', 'rising'), // new GPIO(13, 'in', 'rising', { debounceTimeout: 10 }),
       },
     };
   }
@@ -32,12 +32,9 @@ export class Raspberry {
   }
 
   private getDevice(device: any, callback: () => void) {
-    // eslint-disable-next-line no-console
-    console.log('SL2');
-
     device.watch((err: any, value: any) => {
       // eslint-disable-next-line no-console
-      console.log(`SL3, value is: ${ value }`);
+      console.log(`value is: ${ value }`);
 
       if (err) {
         throw err;
@@ -60,11 +57,9 @@ export class Raspberry {
       if (currStatus === DeviceOutputStatus.off) {
         currStatus = DeviceOutputStatus.on;
         intervalByMin = onByMin;
-        this.coolerSetOn();
       } else {
         currStatus = DeviceOutputStatus.off;
         intervalByMin = offByMin;
-        this.coolerSetOff();
       }
 
       if (callback) {
@@ -116,12 +111,7 @@ export class Raspberry {
   }
 
   public pollMotionDetectionA(callback: () => void) {
-    // eslint-disable-next-line no-console
-    console.log('pollMotionDetectionA set!');
-
     this.getDevice(this.device.input.motionDetectionA, () => {
-      // eslint-disable-next-line no-console
-      console.log('SL:1');
       callback();
     });
   }
