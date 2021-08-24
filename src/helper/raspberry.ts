@@ -19,7 +19,7 @@ export class Raspberry {
         mainBoard: new GPIO(26, 'high'),
       },
       input: {
-        motionDetectionA: new GPIO(13, 'in', 'rising', { debounceTimeout: 10 }),
+        motionDetectionA: new GPIO(13, 'in', 'rising', { debounceTimeout: 1000 }),
       },
     };
   }
