@@ -20,7 +20,6 @@ export async function bootstrap() {
   switch (objArgs?.command) {
     case 'cooler': {
       device = new Cooler(raspberry);
-      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
@@ -36,18 +35,25 @@ export async function bootstrap() {
 
     case 'internet': {
       device = new Internet();
-      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
     case 'motion': {
       device = new Motion(raspberry);
-      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
     default: {
       throw new Error('No proper command found!');
+    }
+  }
+
+  switch (objArgs?.command) {
+    case 'cooler':
+    case 'internet':
+    case 'motion': {
+      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
+      break;
     }
   }
 
