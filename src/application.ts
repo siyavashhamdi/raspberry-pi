@@ -53,7 +53,7 @@ export async function bootstrap() {
 
   device.manageCommand(objArgs.args);
 
-  raspberry.pollMotionDetectionA(() => {
-    Utils.consoleLog('pollMotionDetectionA in application!');
-  });
+  // raspberry.pollMotionDetectionA(() => {
+  //   Utils.consoleLog('pollMotionDetectionA in application!');
+  // });
 }
