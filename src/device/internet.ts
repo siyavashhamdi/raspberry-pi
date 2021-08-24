@@ -1,8 +1,12 @@
-import { Utils } from '../helper';
+import { Raspberry, Utils } from '../helper';
 import { Device } from './device.interface';
 import { MainBoard } from './main-board';
 
 export class Internet implements Device {
+  constructor(raspberry: Raspberry) {
+    this.raspberry = raspberry;
+  }
+
   public manageCommand = (params: string) => {
     switch (params) {
       default: {
@@ -11,13 +15,15 @@ export class Internet implements Device {
     }
   };
 
-  private pollConnectionAvailability = (raspberry) => {
-    Utils.checkConnectionAvailability(10, 10, (isAvailable) => {
+  private raspberry: Raspberry;
+
+  private pollConnectionAvailability = () => {
+    Utils.checkConnectionAvailability(15, 10, (isAvailable) => {
       if (!isAvailable) {
         Utils.consoleLog('Application will be restarted because of internet loss in 30 seconds...');
 
         setTimeout(() => {
-          const mainBoard = new MainBoard(raspberry);
+          const mainBoard = new MainBoard(this.raspberry);
 
           mainBoard.reset();
 

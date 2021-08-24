@@ -34,7 +34,7 @@ export async function bootstrap() {
     }
 
     case 'internet': {
-      device = new Internet();
+      device = new Internet(raspberry);
       break;
     }
 
