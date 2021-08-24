@@ -11,9 +11,18 @@ export class Raspberry {
       throw new Error('Gpio functionality is not accessible on this computer!');
     }
 
+    const getInitializedOutputGpio = (pinNum: number) => {
+      const deviceAsInput = new GPIO(pinNum, 'in');
+      const direction = deviceAsInput.readSync() === GPIO.HIGH ? 'high' : 'low';
+
+      Utils.consoleLog(`SL:1 | pinNum: ${ pinNum } | direction: ${ direction } | deviceAsInput: ${ deviceAsInput }`);
+
+      return new GPIO(pinNum, direction);
+    };
+
     this.device = {
       output: {
-        cooler: new GPIO(13, 'high'),
+        cooler: getInitializedOutputGpio(13),
         rigGrpA: new GPIO(1, 'out'), // ???
         rigGrpB: new GPIO(1, 'out'), // ???
         mainBoard: new GPIO(1, 'out'), // ???
