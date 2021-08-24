@@ -1,22 +1,9 @@
 import { Utils, Raspberry } from './helper';
-import { Cooler, Device, Rig } from './device';
+import { Cooler, Device, Rig, Internet, Motion } from './device';
 import { MainBoard } from './device/main-board';
 
 export async function bootstrap() {
   Utils.consoleLog('Application started');
-  Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
-
-  Utils.checkConnectionAvailability(0, 10, (isAvailable) => {
-    if (!isAvailable) {
-      Utils.consoleLog('Application will be restarted because of internet loss in 10 seconds...');
-
-      setTimeout(() => {
-        Utils.rebootMachine();
-      }, 30 * 1000);
-    } else {
-      Utils.consoleLog('Internet connection is available...');
-    }
-  });
 
   const args = process.argv.filter(item => item.startsWith('--'));
   const objArgs = Utils.convertKeyVal2Obj(args);
@@ -33,6 +20,7 @@ export async function bootstrap() {
   switch (objArgs?.command) {
     case 'cooler': {
       device = new Cooler(raspberry);
+      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
@@ -46,14 +34,22 @@ export async function bootstrap() {
       break;
     }
 
+    case 'internet': {
+      device = new Internet();
+      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
+      break;
+    }
+
+    case 'motion': {
+      device = new Motion(raspberry);
+      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
+      break;
+    }
+
     default: {
       throw new Error('No proper command found!');
     }
   }
 
   device.manageCommand(objArgs.args);
-
-  // raspberry.pollMotionDetectionA(() => {
-  //   Utils.consoleLog('pollMotionDetectionA in application!');
-  // });
 }

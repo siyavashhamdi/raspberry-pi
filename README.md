@@ -29,3 +29,7 @@
 		- npm run start -- --command=rig --args=group-b,set-off
 		
 		- npm run start -- --command=board --args=reset
+
+		- npm run start -- --command=internet --args=none
+
+		- npm run start -- --command=motion --args=none
