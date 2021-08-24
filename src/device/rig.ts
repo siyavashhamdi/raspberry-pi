@@ -51,14 +51,14 @@ export class Rig implements Device {
     const waitByMin = +(process.env.RIG_RESEAT_WAIT_BY_MIN || 1);
 
     this.raspberry.rigResetGroupA(waitByMin);
-    Utils.consoleLog(`Rig group A is resetting in ${ waitByMin } minute(s)`);
+    Utils.consoleLog(`Rig group A is restarting in ${ waitByMin } minute(s)`);
   };
 
   private resetGroupB = () => {
     const waitByMin = +(process.env.RIG_RESEAT_WAIT_BY_MIN || 1);
 
     this.raspberry.rigResetGroupB(waitByMin);
-    Utils.consoleLog(`Rig group B is resetting in ${ waitByMin } minute(s)`);
+    Utils.consoleLog(`Rig group B is restarting in ${ waitByMin } minute(s)`);
   };
 
   private setOnGroupA = () => {
