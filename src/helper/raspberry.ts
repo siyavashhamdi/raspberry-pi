@@ -13,7 +13,7 @@ export class Raspberry {
 
     this.device = {
       output: {
-        cooler: new GPIO(13, 'out'),
+        cooler: new GPIO(13, 'high'),
         rigGrpA: new GPIO(1, 'out'), // ???
         rigGrpB: new GPIO(1, 'out'), // ???
         mainBoard: new GPIO(1, 'out'), // ???
@@ -30,7 +30,7 @@ export class Raspberry {
     const value = status === DeviceOutputStatus.off ? 0 : 1;
 
     Utils.consoleLog(`device: ${ JSON.stringify(device) } | value: ${ value }`);
-    // device.writeSync(value);
+    device.writeSync(value);
   }
 
   private getDevice(device: any, callback: () => void) {
