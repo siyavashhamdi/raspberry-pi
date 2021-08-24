@@ -19,20 +19,20 @@
 	2. start using:
 		- npm run start -- --command=cooler --args=periodically
 		- npm run start -- --command=cooler --args=set-on
-		- npm run start -- --command=cooler --args=set-off<br/><br/>
+		- npm run start -- --command=cooler --args=set-off <br/><br/>
 		
 		- npm run start -- --command=rig --args=group-a,reset
 		- npm run start -- --command=rig --args=group-b,reset
 		- npm run start -- --command=rig --args=group-a,set-on
 		- npm run start -- --command=rig --args=group-b,set-on
 		- npm run start -- --command=rig --args=group-a,set-off
-		- npm run start -- --command=rig --args=group-b,set-off
+		- npm run start -- --command=rig --args=group-b,set-off <br/><br/>
 		
 
-		- npm run start -- --command=board --args=reset
+		- npm run start -- --command=board --args=reset <br/><br/>
 
 
-		- npm run start -- --command=internet --args=none
+		- npm run start -- --command=internet --args=none <br/><br/>
 
 
-		- npm run start -- --command=motion --args=none
+		- npm run start -- --command=motion --args=none <br/><br/>
