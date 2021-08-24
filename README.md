@@ -19,9 +19,8 @@
 	2. start using:
 		- npm run start -- --command=cooler --args=periodically
 		- npm run start -- --command=cooler --args=set-on
-		- npm run start -- --command=cooler --args=set-off
+		- npm run start -- --command=cooler --args=set-off\n
 		
-
 		- npm run start -- --command=rig --args=group-a,reset
 		- npm run start -- --command=rig --args=group-b,reset
 		- npm run start -- --command=rig --args=group-a,set-on
