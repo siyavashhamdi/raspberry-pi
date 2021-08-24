@@ -13,13 +13,13 @@ export class Raspberry {
 
     this.device = {
       output: {
-        cooler: new GPIO(13, 'high'),
-        rigGrpA: new GPIO(6, 'high'),
-        rigGrpB: new GPIO(5, 'high'),
-        mainBoard: new GPIO(26, 'high'),
+        cooler: new GPIO(13, 'high', 'none', { activeLow: false }),
+        rigGrpA: new GPIO(6, 'high', 'none', { activeLow: false }),
+        rigGrpB: new GPIO(5, 'high', 'none', { activeLow: false }),
+        mainBoard: new GPIO(26, 'high', 'none', { activeLow: false }),
       },
       input: {
-        motionDetectionA: new GPIO(13, 'in', 'rising', { debounceTimeout: 1000 }),
+        motionDetectionA: new GPIO(13, 'in', 'rising', { debounceTimeout: 1000, activeLow: false }),
       },
     };
   }
