@@ -10,7 +10,6 @@ export class Internet implements Device {
   public manageCommand = (params: string) => {
     switch (params) {
       default: {
-        Utils.consoleLog('SL:1');
         this.pollConnectionAvailability();
         break;
       }
@@ -20,10 +19,9 @@ export class Internet implements Device {
   private raspberry: Raspberry;
 
   private pollConnectionAvailability = () => {
-    Utils.consoleLog('SL:2');
     Utils.checkConnectionAvailability(0, 10, (isAvailable) => {
       if (!isAvailable) {
-        Utils.consoleLog('Application will be restarted because of internet loss in 30 seconds...');
+        Utils.consoleLog('The main board will be restarted because of internet loss in 30 seconds...');
 
         setTimeout(() => {
           const mainBoard = new MainBoard(this.raspberry);

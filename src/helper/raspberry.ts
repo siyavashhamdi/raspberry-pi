@@ -1,7 +1,6 @@
 import * as OnOff from 'onoff';
 import { DeviceOutputStatus } from '../enum';
 import { MainDevices } from '../type';
-import { Utils } from './utils';
 
 export class Raspberry {
   constructor() {
@@ -29,7 +28,6 @@ export class Raspberry {
   private setDevice(device: any, status: DeviceOutputStatus) {
     const value = status === DeviceOutputStatus.off ? 0 : 1;
 
-    Utils.consoleLog(`device: ${ JSON.stringify(device) } | value: ${ value }`);
     device.writeSync(value);
   }
 

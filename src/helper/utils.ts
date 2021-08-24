@@ -103,13 +103,10 @@ export class Utils {
     samplingCount = 10,
     callback?: (isAvailable: boolean) => void,
   ): Promise<void> {
-    Utils.consoleLog(`SL:3, ${ checkEveryMinOf }, ${ samplingCount }`);
-
     let lastCheckedMinute = -1;
 
     setInterval(async () => {
       const currMinutes = new Date().getMinutes();
-      Utils.consoleLog(`SL:4, ${ currMinutes }`);
 
       if (currMinutes === checkEveryMinOf && lastCheckedMinute !== currMinutes) {
         lastCheckedMinute = currMinutes;
