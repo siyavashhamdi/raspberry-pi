@@ -36,3 +36,9 @@
 
 
 		- npm run start -- --command=motion --args=none <br/><br/>
+
+
+TODO:
+	- Change `raspberry.ts` to `io.ts`
+	- Convert `UtilsconsoleLog` to a class named `logger`
+	- consoleLog must accept object. in order it shows stringify of that object

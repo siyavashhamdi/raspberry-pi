@@ -1,9 +1,10 @@
-import { Raspberry, Utils } from '../helper';
+import { Raspberry, SMS, Utils } from '../helper';
 import { Device } from './device.interface';
 
 export class Motion implements Device {
-  constructor(raspberry: Raspberry) {
+  constructor(raspberry: Raspberry, sms: SMS) {
     this.raspberry = raspberry;
+    this.sms = sms;
   }
 
   public manageCommand = (params: string) => {
@@ -16,8 +17,21 @@ export class Motion implements Device {
 
   private raspberry: Raspberry;
 
+  private sms: SMS;
+
+  private dtNextSendSms?: Date;
+
   private pollMotionDetection = () => {
-    this.raspberry.pollMotionDetectionA(() => {
+    this.raspberry.getChangeMotionDetectionA(() => {
+      const currDate = new Date();
+
+      if (this.dtNextSendSms && currDate < this.dtNextSendSms) {
+        Utils.consoleLog('Date is not reached yet');
+      }
+
+      this.dtNextSendSms = new Date(Utils.addSecondsToDate(currDate, 10 * 60));
+      this.sms.sendSms('09120', 'Hi');
+
       Utils.consoleLog('pollMotionDetectionA in application!');
     });
   };

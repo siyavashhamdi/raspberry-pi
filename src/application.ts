@@ -1,4 +1,4 @@
-import { Utils, Raspberry } from './helper';
+import { Utils, Raspberry, SMS } from './helper';
 import { Cooler, Device, Rig, Internet, Motion } from './device';
 import { MainBoard } from './device/main-board';
 
@@ -15,11 +15,13 @@ export async function bootstrap() {
   }
 
   const raspberry = new Raspberry();
+  const sms = new SMS();
   let device: Device;
 
   switch (objArgs?.command) {
     case 'cooler': {
       device = new Cooler(raspberry);
+      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
@@ -35,11 +37,13 @@ export async function bootstrap() {
 
     case 'internet': {
       device = new Internet(raspberry);
+      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
     case 'motion': {
-      device = new Motion(raspberry);
+      device = new Motion(raspberry, sms);
+      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
@@ -48,14 +52,14 @@ export async function bootstrap() {
     }
   }
 
-  switch (objArgs?.command) {
-    case 'cooler':
-    case 'internet':
-    case 'motion': {
-      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
-      break;
-    }
-  }
+  // switch (objArgs?.command) {
+  //   case 'cooler':
+  //   case 'internet':
+  //   case 'motion': {
+  //     Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
+  //     break;
+  //   }
+  // }
 
   device.manageCommand(objArgs.args);
 }

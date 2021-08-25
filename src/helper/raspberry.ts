@@ -18,7 +18,7 @@ export class Raspberry {
         mainBoard: new GPIO(26, 'high', 'none', { activeLow: false }),
       },
       input: {
-        motionDetectionA: new GPIO(13, 'in', 'rising', { debounceTimeout: 1000, activeLow: false }),
+        motionDetectionA: new GPIO(10, 'in', 'rising', { debounceTimeout: 1000, activeLow: false }),
       },
     };
   }
@@ -31,7 +31,7 @@ export class Raspberry {
     device.writeSync(value);
   }
 
-  private getDevice(device: any, callback: () => void) {
+  private getDevice(device: any, pinChanged: () => void) {
     device.watch((err: any, value: any) => {
       // eslint-disable-next-line no-console
       console.log(`value is: ${ value }`);
@@ -40,7 +40,7 @@ export class Raspberry {
         throw err;
       }
 
-      callback();
+      pinChanged();
     });
   }
 
@@ -112,9 +112,9 @@ export class Raspberry {
     this.setDevice(this.device.output.mainBoard, DeviceOutputStatus.off);
   }
 
-  public pollMotionDetectionA(callback: () => void) {
+  public getChangeMotionDetectionA(pinChanged: () => void) {
     this.getDevice(this.device.input.motionDetectionA, () => {
-      callback();
+      pinChanged();
     });
   }
 }
