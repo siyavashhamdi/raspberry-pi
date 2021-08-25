@@ -9,7 +9,7 @@ export class SMS {
 
   private serialPort: any;
 
-  private writeWithCr = (cmd: string) => {
+  private writeWithCr(cmd: string) {
     this.serialPort.write(`${ cmd }\r`);
   }
 
@@ -20,7 +20,7 @@ export class SMS {
   public sendSms(number: string, text: string) {
     const delayMs = 500;
 
-    text = text.split('').map(k => k.charCodeAt(0).toString(16).padStart(4, '0')).join('');
+    const textModified = text.split('').map(k => k.charCodeAt(0).toString(16).padStart(4, '0')).join('');
 
     this.writeWithCr('AT');
 
@@ -39,13 +39,13 @@ export class SMS {
             this.writeWithCr(`AT+CMGS="${ number }"`);
 
             setTimeout(() => {
-              this.serialPort.write(`${ text }${ String.fromCharCode(26) }`);
+              this.serialPort.write(`${ textModified }${ String.fromCharCode(26) }`);
             }, delayMs);
           }, delayMs);
         }, delayMs);
       }, delayMs);
     }, delayMs);
-  };
+  }
 
   private init() {
     this.serialPort.open(() => {
