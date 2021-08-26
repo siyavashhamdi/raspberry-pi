@@ -1,6 +1,7 @@
 import { Utils, Raspberry, SMS } from './helper';
 import { Cooler, Device, Rig, Internet, Motion } from './device';
 import { MainBoard } from './device/main-board';
+import { ArgCommand } from 'enum';
 
 export async function bootstrap() {
   Utils.consoleLog('Application started');
@@ -18,30 +19,32 @@ export async function bootstrap() {
   const sms = new SMS();
   let device: Device;
 
-  switch (objArgs?.command) {
-    case 'cooler': {
+  const command: ArgCommand = objArgs?.command;
+
+  switch (command) {
+    case ArgCommand.cooler: {
       device = new Cooler(raspberry);
       Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
-    case 'rig': {
+    case ArgCommand.rig: {
       device = new Rig(raspberry);
       break;
     }
 
-    case 'board': {
+    case ArgCommand.board: {
       device = new MainBoard(raspberry);
       break;
     }
 
-    case 'internet': {
+    case ArgCommand.internet: {
       device = new Internet(raspberry);
       Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
-    case 'motion': {
+    case ArgCommand.motion: {
       device = new Motion(raspberry, sms);
       Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
