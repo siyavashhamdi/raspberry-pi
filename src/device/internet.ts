@@ -22,7 +22,9 @@ export class Internet implements Device {
   private sms: SMS;
 
   private pollConnectionAvailability = () => {
-    Utils.checkConnectionAvailability(0, 10, (isAvailable) => {
+    const internetCheckMins = process.env.INTERNET_CHECK_MINS?.split(',')?.map(min => +min) || [];
+
+    Utils.checkConnectionAvailability(internetCheckMins, 10, (isAvailable) => {
       if (!isAvailable) {
         Utils.consoleLog('The main board will be restarted because of internet loss in 30 seconds...');
         this.sms.sendBoradcastSms('ارتباط با اینترنت قطع می‌باشد.\nتلاش برای ری‌استارت کردن ماشین تا لحظاتی دیگر...');

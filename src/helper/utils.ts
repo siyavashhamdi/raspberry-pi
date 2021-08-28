@@ -99,7 +99,7 @@ export class Utils {
   }
 
   public static async checkConnectionAvailability(
-    checkEveryMinOf = 0,
+    checkEveryMinOf = [0],
     samplingCount = 10,
     callback?: (isAvailable: boolean) => void,
   ): Promise<void> {
@@ -108,7 +108,7 @@ export class Utils {
     setInterval(async () => {
       const currMinutes = new Date().getMinutes();
 
-      if (currMinutes === checkEveryMinOf && lastCheckedMinute !== currMinutes) {
+      if (checkEveryMinOf.includes(currMinutes) && lastCheckedMinute !== currMinutes) {
         lastCheckedMinute = currMinutes;
 
         const resPing = await Utils.ping(samplingCount, 5 * 1000);
