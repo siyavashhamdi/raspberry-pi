@@ -27,7 +27,7 @@ export class Internet implements Device {
     Utils.checkConnectionAvailability(internetCheckMins, 10, (isAvailable) => {
       if (!isAvailable) {
         Utils.consoleLog('The main board will be restarted because of internet loss in 30 seconds...');
-        this.sms.sendBoradcastSms('ارتباط با اینترنت قطع می‌باشد.\nتلاش برای ری‌استارت کردن ماشین تا لحظاتی دیگر...');
+        this.sms.sendBroadcastSms('ارتباط با اینترنت قطع می‌باشد.\nتلاش برای ری‌استارت کردن ماشین تا لحظاتی دیگر...');
 
         setTimeout(() => {
           const mainBoard = new MainBoard(this.io);

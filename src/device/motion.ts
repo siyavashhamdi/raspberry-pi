@@ -32,7 +32,7 @@ export class Motion implements Device {
       }
 
       this.dtNextSendSms = new Date(Utils.addSecondsToDate(currDate, 10 * 60));
-      this.sms.sendBoradcastSms('سنسور حرکتی حیاط فعال گردید.');
+      this.sms.sendBroadcastSms('سنسور حرکتی حیاط فعال گردید.');
     });
   };
 }

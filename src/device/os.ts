@@ -18,6 +18,6 @@ export class OS implements Device {
 
   private osStarted = () => {
     Utils.consoleLog('Raspberry OS is booted.');
-    this.sms.sendBoradcastSms('سیستم‌عامل بوت شد.');
+    this.sms.sendBroadcastSms('سیستم‌عامل بوت شد.');
   };
 }

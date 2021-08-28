@@ -5,4 +5,5 @@ export enum ArgCommand {
   board = 'board',
   internet = 'internet',
   motion = 'motion',
+  sms = 'sms',
 }

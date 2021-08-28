@@ -28,6 +28,6 @@
 
 * TODO:
 	- [DONE] Change `raspberry.ts` to `io.ts`
-	- Convert `UtilsconsoleLog` to a class named `logger`
+	- Convert `Utils.consoleLog` to a class named `logger`
 	- [DONE] consoleLog must accept object. in order to show stringify of that object
 	- Add section to run raspberry only on raspbian linux

@@ -29,7 +29,6 @@ export async function bootstrap() {
     }
 
     case ArgCommand.cooler: {
-      await Utils.sleep(1000);
       device = new Cooler(io);
       break;
     }
@@ -45,13 +44,16 @@ export async function bootstrap() {
     }
 
     case ArgCommand.internet: {
-      await Utils.sleep(2000);
       device = new Internet(io, sms);
       break;
     }
 
     case ArgCommand.motion: {
-      await Utils.sleep(3000);
+      device = new Motion(io, sms);
+      break;
+    }
+
+    case ArgCommand.sms: {
       device = new Motion(io, sms);
       break;
     }

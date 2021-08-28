@@ -48,7 +48,7 @@ export class SMS {
     });
   }
 
-  public async sendBoradcastSms(text: string) {
+  public async sendBroadcastSms(text: string) {
     const smsPhoneNumbers = process.env.SMS_PHONE_NUMBERS?.split(',').filter(no => no.length > 10) || [];
 
     if (!smsPhoneNumbers.length) {
