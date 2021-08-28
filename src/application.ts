@@ -23,7 +23,7 @@ export async function bootstrap() {
 
   switch (command) {
     case ArgCommand.OS: {
-      device = new OS(sms);
+      device = new OS(raspberry, sms);
       break;
     }
 
