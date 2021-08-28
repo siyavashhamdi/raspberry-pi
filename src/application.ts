@@ -1,5 +1,5 @@
 import { Utils, Raspberry, SMS } from './helper';
-import { Cooler, Device, Rig, Internet, Motion } from './device';
+import { Cooler, Device, Rig, Internet, Motion, OS } from './device';
 import { MainBoard } from './device/main-board';
 import { ArgCommand } from './enum';
 
@@ -22,6 +22,11 @@ export async function bootstrap() {
   const command: ArgCommand = objArgs?.command;
 
   switch (command) {
+    case ArgCommand.OS: {
+      device = new OS(sms);
+      break;
+    }
+
     case ArgCommand.cooler: {
       device = new Cooler(raspberry);
       break;
@@ -53,4 +58,5 @@ export async function bootstrap() {
   }
 
   device.manageCommand(objArgs.args);
+  Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
 }

@@ -12,7 +12,6 @@ export class Internet implements Device {
     switch (params) {
       default: {
         this.pollConnectionAvailability();
-        Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
         break;
       }
     }

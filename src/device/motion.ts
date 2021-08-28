@@ -11,7 +11,6 @@ export class Motion implements Device {
     switch (params) {
       default: {
         this.pollMotionDetection();
-        Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       }
     }
   };

@@ -42,7 +42,7 @@ export class SMS {
       await Utils.sleep(interAtCommandDelay);
 
       this.serialPort.write(`${ textModified }${ String.fromCharCode(26) }`);
-      await Utils.sleep(interAtCommandDelay * 5);
+      await Utils.sleep(interAtCommandDelay * 10); // Takes longer than usual
 
       resolve();
     });
