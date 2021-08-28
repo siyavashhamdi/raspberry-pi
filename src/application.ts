@@ -24,6 +24,7 @@ export async function bootstrap() {
   switch (command) {
     case ArgCommand.OS: {
       device = new Motion(raspberry, sms);
+      sms.sendBoradcastSms('سلام۳۳');
       break;
     }
 

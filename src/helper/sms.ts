@@ -65,6 +65,9 @@ export class SMS {
   }
 
   private init() {
+    // eslint-disable-next-line no-console
+    console.log('serial openneddddddddddddddddddddddd');
+
     this.serialPort.open(() => {
       let delayTimeout: NodeJS.Timeout;
       let buffer = '';
