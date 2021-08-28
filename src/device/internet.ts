@@ -1,10 +1,10 @@
-import { Raspberry, SMS, Utils } from '../helper';
+import { IO, SMS, Utils } from '../helper';
 import { Device } from './device.interface';
 import { MainBoard } from './main-board';
 
 export class Internet implements Device {
-  constructor(raspberry: Raspberry, sms: SMS) {
-    this.raspberry = raspberry;
+  constructor(io: IO, sms: SMS) {
+    this.io = io;
     this.sms = sms;
   }
 
@@ -17,7 +17,7 @@ export class Internet implements Device {
     }
   };
 
-  private raspberry: Raspberry;
+  private io: IO;
 
   private sms: SMS;
 
@@ -30,7 +30,7 @@ export class Internet implements Device {
         this.sms.sendBoradcastSms('ارتباط با اینترنت قطع می‌باشد.\nتلاش برای ری‌استارت کردن ماشین تا لحظاتی دیگر...');
 
         setTimeout(() => {
-          const mainBoard = new MainBoard(this.raspberry);
+          const mainBoard = new MainBoard(this.io);
 
           mainBoard.reset();
 

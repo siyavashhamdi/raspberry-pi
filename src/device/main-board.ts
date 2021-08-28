@@ -1,9 +1,9 @@
-import { Raspberry, Utils } from '../helper';
+import { IO, Utils } from '../helper';
 import { Device } from './device.interface';
 
 export class MainBoard implements Device {
-  constructor(raspberry: Raspberry) {
-    this.raspberry = raspberry;
+  constructor(io: IO) {
+    this.io = io;
   }
 
   public manageCommand = (params: string) => {
@@ -19,13 +19,13 @@ export class MainBoard implements Device {
     }
   };
 
-  private raspberry: Raspberry;
+  private io: IO;
 
   public reset = () => {
     Utils.consoleLog('The main board is restarted. It will be alive depends on the protectors delay.');
 
     setTimeout(() => {
-      this.raspberry.mainBoardReset();
+      this.io.mainBoardReset();
     }, 2000);
   };
 }

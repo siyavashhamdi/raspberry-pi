@@ -1,9 +1,9 @@
-import { Raspberry, Utils } from '../helper';
+import { IO, Utils } from '../helper';
 import { Device } from './device.interface';
 
 export class Cooler implements Device {
-  constructor(raspberry: Raspberry) {
-    this.raspberry = raspberry;
+  constructor(io: IO) {
+    this.io = io;
   }
 
   public manageCommand = (params: string) => {
@@ -29,7 +29,7 @@ export class Cooler implements Device {
     }
   };
 
-  private raspberry: Raspberry;
+  private io: IO;
 
   private periodically = () => {
     const coolerOnByMin = +(process.env.COOLER_ON_BY_MIN || 120);
@@ -37,7 +37,7 @@ export class Cooler implements Device {
 
     Utils.consoleLog(`Cooler switch periodically started. coolerOnByMin: ${ coolerOnByMin }, coolerOffByMin: ${ coolerOffByMin }`);
 
-    this.raspberry.coolerSwitchPeriodically(
+    this.io.coolerSwitchPeriodically(
       coolerOnByMin,
       coolerOffByMin,
       (status: any, nextTriggerAfterMin: any) => {
@@ -50,10 +50,10 @@ export class Cooler implements Device {
   };
 
   private setOn = () => {
-    this.raspberry.coolerSetOn();
+    this.io.coolerSetOn();
   };
 
   private setOff = () => {
-    this.raspberry.coolerSetOff();
+    this.io.coolerSetOff();
   };
 }

@@ -1,9 +1,9 @@
-import { Raspberry, SMS, Utils } from '../helper';
+import { IO, SMS, Utils } from '../helper';
 import { Device } from './device.interface';
 
 export class Motion implements Device {
-  constructor(raspberry: Raspberry, sms: SMS) {
-    this.raspberry = raspberry;
+  constructor(io: IO, sms: SMS) {
+    this.io = io;
     this.sms = sms;
   }
 
@@ -15,14 +15,14 @@ export class Motion implements Device {
     }
   };
 
-  private raspberry: Raspberry;
+  private io: IO;
 
   private sms: SMS;
 
   private dtNextSendSms?: Date;
 
   private pollMotionDetection = () => {
-    this.raspberry.getChangeMotionDetectionA(() => {
+    this.io.getChangeMotionDetectionA(() => {
       const currDate = new Date();
 
       if (this.dtNextSendSms && currDate < this.dtNextSendSms) {

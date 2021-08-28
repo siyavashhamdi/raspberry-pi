@@ -1,4 +1,4 @@
-import { Utils, Raspberry, SMS } from './helper';
+import { Utils, IO, SMS } from './helper';
 import { Cooler, Device, Rig, Internet, Motion, OS } from './device';
 import { MainBoard } from './device/main-board';
 import { ArgCommand } from './enum';
@@ -15,7 +15,7 @@ export async function bootstrap() {
     throw new Error('command or args is not provided!');
   }
 
-  const raspberry = new Raspberry();
+  const io = new IO();
   const sms = new SMS();
   let device: Device;
 
@@ -30,27 +30,27 @@ export async function bootstrap() {
 
     case ArgCommand.cooler: {
       await Utils.sleep(1000);
-      device = new Cooler(raspberry);
+      device = new Cooler(io);
       break;
     }
 
     case ArgCommand.rig: {
-      device = new Rig(raspberry);
+      device = new Rig(io);
       break;
     }
 
     case ArgCommand.board: {
-      device = new MainBoard(raspberry);
+      device = new MainBoard(io);
       break;
     }
 
     case ArgCommand.internet: {
-      device = new Internet(raspberry, sms);
+      device = new Internet(io, sms);
       break;
     }
 
     case ArgCommand.motion: {
-      device = new Motion(raspberry, sms);
+      device = new Motion(io, sms);
       break;
     }
 

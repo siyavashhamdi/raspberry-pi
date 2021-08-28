@@ -3,7 +3,7 @@ import { DeviceOutputStatus } from '../enum';
 import { MainDevices } from '../type';
 import { Utils } from './utils';
 
-export class Raspberry {
+export class IO {
   constructor() {
     const GPIO = OnOff.Gpio;
 

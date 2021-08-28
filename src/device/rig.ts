@@ -1,10 +1,10 @@
-import { Raspberry, Utils } from '../helper';
+import { IO, Utils } from '../helper';
 import { Device } from './device.interface';
 import { DeviceOutputStatus } from '../enum';
 
 export class Rig implements Device {
-  constructor(raspberry: Raspberry) {
-    this.raspberry = raspberry;
+  constructor(io: IO) {
+    this.io = io;
   }
 
   public manageCommand = (params: string) => {
@@ -45,39 +45,39 @@ export class Rig implements Device {
     }
   };
 
-  private raspberry: Raspberry;
+  private io: IO;
 
   private resetGroupA = () => {
     const waitByMin = +(process.env.RIG_RESEAT_WAIT_BY_MIN || 1);
 
-    this.raspberry.rigResetGroupA(waitByMin);
+    this.io.rigResetGroupA(waitByMin);
     Utils.consoleLog(`Rig group A is restarting in ${ waitByMin } minute(s)`);
   };
 
   private resetGroupB = () => {
     const waitByMin = +(process.env.RIG_RESEAT_WAIT_BY_MIN || 1);
 
-    this.raspberry.rigResetGroupB(waitByMin);
+    this.io.rigResetGroupB(waitByMin);
     Utils.consoleLog(`Rig group B is restarting in ${ waitByMin } minute(s)`);
   };
 
   private setOnGroupA = () => {
-    this.raspberry.rigSetGroupA(DeviceOutputStatus.on);
+    this.io.rigSetGroupA(DeviceOutputStatus.on);
     Utils.consoleLog('Rig group A is set to \'ON\'');
   };
 
   private setOffGroupA = () => {
-    this.raspberry.rigSetGroupA(DeviceOutputStatus.off);
+    this.io.rigSetGroupA(DeviceOutputStatus.off);
     Utils.consoleLog('Rig group A is set to \'OFF\'');
   };
 
   private setOnGroupB = () => {
-    this.raspberry.rigSetGroupB(DeviceOutputStatus.on);
+    this.io.rigSetGroupB(DeviceOutputStatus.on);
     Utils.consoleLog('Rig group B is set to \'ON\'');
   };
 
   private setOffGroupB = () => {
-    this.raspberry.rigSetGroupB(DeviceOutputStatus.off);
+    this.io.rigSetGroupB(DeviceOutputStatus.off);
     Utils.consoleLog('Rig group B is set to \'OFF\'');
   };
 }
