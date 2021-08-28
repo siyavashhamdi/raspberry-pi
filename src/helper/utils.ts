@@ -132,4 +132,12 @@ export class Utils {
       }
     }, 10 * 60 * 1000);
   }
+
+  public static async sleep(durationMs: number): Promise<void> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, durationMs);
+    });
+  }
 }

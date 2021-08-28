@@ -17,37 +17,38 @@ export class SMS {
     // Nothing
   }
 
-  public sendSms(number: string, text: string) {
-    const delayMs = 500;
+  private async sendSms(number: string, text: string): Promise<void> {
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise(async (resolve) => {
+      const interAtCommandDelay = 500;
 
-    const textModified = text.split('').map(k => k.charCodeAt(0).toString(16).padStart(4, '0')).join('');
+      const textModified = text.split('').map(k => k.charCodeAt(0).toString(16).padStart(4, '0')).join('');
 
-    this.writeWithCr('AT');
+      this.writeWithCr('AT');
+      await Utils.sleep(interAtCommandDelay);
 
-    setTimeout(() => {
       this.writeWithCr('AT+CMGF=1');
+      await Utils.sleep(interAtCommandDelay);
 
-      setTimeout(() => {
-        // Set this and save to configs of AT
-        this.writeWithCr('AT+CSCS="HEX"');
+      // Set this and save to configs of AT
+      this.writeWithCr('AT+CSCS="HEX"');
+      await Utils.sleep(interAtCommandDelay);
 
-        setTimeout(() => {
-          // Set this and save to configs of AT
-          this.writeWithCr('AT+CSMP=49,167,0,8');
+      // Set this and save to configs of AT
+      this.writeWithCr('AT+CSMP=49,167,0,8');
+      await Utils.sleep(interAtCommandDelay);
 
-          setTimeout(() => {
-            this.writeWithCr(`AT+CMGS="${ number }"`);
+      this.writeWithCr(`AT+CMGS="${ number }"`);
+      await Utils.sleep(interAtCommandDelay);
 
-            setTimeout(() => {
-              this.serialPort.write(`${ textModified }${ String.fromCharCode(26) }`);
-            }, delayMs);
-          }, delayMs);
-        }, delayMs);
-      }, delayMs);
-    }, delayMs);
+      this.serialPort.write(`${ textModified }${ String.fromCharCode(26) }`);
+      await Utils.sleep(interAtCommandDelay);
+
+      resolve();
+    });
   }
 
-  public sendBoradcastSms(text: string) {
+  public async sendBoradcastSms(text: string) {
     const smsPhoneNumbers = process.env.SMS_PHONE_NUMBERS?.split(',').filter(no => no.length > 10) || [];
 
     if (!smsPhoneNumbers.length) {
@@ -56,9 +57,9 @@ export class SMS {
       return;
     }
 
-    for (const phoneNum of smsPhoneNumbers) {
+    for await (const phoneNum of smsPhoneNumbers) {
       Utils.consoleLog(`Sending message '${ text }' to phone number '${ phoneNum }'`);
-      this.sendSms(phoneNum, text);
+      await this.sendSms(phoneNum, text);
     }
   }
 
