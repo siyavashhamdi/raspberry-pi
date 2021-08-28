@@ -1,5 +1,5 @@
 import { Utils, Raspberry, SMS } from './helper';
-import { Cooler, Device, Rig, Internet, Motion, OS } from './device';
+import { Cooler, Device, Rig, Internet, Motion } from './device';
 import { MainBoard } from './device/main-board';
 import { ArgCommand } from './enum';
 
@@ -23,7 +23,8 @@ export async function bootstrap() {
 
   switch (command) {
     case ArgCommand.OS: {
-      sms.sendBoradcastSms('سلام۳۳');
+      device = new Motion(raspberry, sms);
+      // sms.sendBoradcastSms('سلام۳۳');
       break;
     }
 
