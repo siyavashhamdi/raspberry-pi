@@ -1,5 +1,5 @@
 import { Utils, Raspberry, SMS } from './helper';
-import { Cooler, Device, Rig, Internet, Motion } from './device';
+import { Cooler, Device, Rig, Internet, Motion, OS } from './device';
 import { MainBoard } from './device/main-board';
 import { ArgCommand } from './enum';
 
@@ -19,14 +19,13 @@ export async function bootstrap() {
   const sms = new SMS();
   let device: Device;
 
-  await Utils.sleep(5000);
+  await Utils.sleep(2000);
 
   const command: ArgCommand = objArgs?.command;
 
   switch (command) {
     case ArgCommand.OS: {
-      device = new Motion(raspberry, sms);
-      sms.sendBoradcastSms('سلام۳۳');
+      device = new OS(sms);
       break;
     }
 

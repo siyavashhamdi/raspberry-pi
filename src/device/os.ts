@@ -1,26 +1,23 @@
-import { Raspberry, SMS, Utils } from '../helper';
+import { SMS, Utils } from '../helper';
 import { Device } from './device.interface';
 
 export class OS implements Device {
-  constructor(raspberry: Raspberry, sms: SMS) {
-    this.raspberry = raspberry;
+  constructor(sms: SMS) {
     this.sms = sms;
   }
 
   public manageCommand = (params: string) => {
     switch (params) {
       default: {
-        this.pollMotionDetection();
+        this.osStarted();
       }
     }
   };
 
-  private raspberry: Raspberry;
-
   private sms: SMS;
 
-  private pollMotionDetection = () => {
-    Utils.consoleLog(this.raspberry);
-    this.sms.sendBoradcastSms('سلام ۶.');
+  private osStarted = () => {
+    Utils.consoleLog('Raspberry OS is booted.');
+    this.sms.sendBoradcastSms('سیستم‌عامل بوت شد.');
   };
 }
