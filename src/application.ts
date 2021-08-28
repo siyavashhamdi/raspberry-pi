@@ -19,7 +19,7 @@ export async function bootstrap() {
   const sms = new SMS();
   let device: Device;
 
-  Utils.sleep(5000);
+  await Utils.sleep(5000);
 
   const command: ArgCommand = objArgs?.command;
 
