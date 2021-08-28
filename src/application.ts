@@ -19,12 +19,11 @@ export async function bootstrap() {
   const sms = new SMS();
   let device: Device;
 
-  await Utils.sleep(2000);
-
   const command: ArgCommand = objArgs?.command;
 
   switch (command) {
     case ArgCommand.OS: {
+      await Utils.sleep(5000);
       device = new OS(sms);
       break;
     }
