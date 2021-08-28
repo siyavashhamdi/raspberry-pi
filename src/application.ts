@@ -29,6 +29,7 @@ export async function bootstrap() {
     }
 
     case ArgCommand.cooler: {
+      await Utils.sleep(1000);
       device = new Cooler(raspberry);
       break;
     }
