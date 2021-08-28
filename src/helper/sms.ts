@@ -24,8 +24,6 @@ export class SMS {
 
       const textModified = text.split('').map(k => k.charCodeAt(0).toString(16).padStart(4, '0')).join('');
 
-      await Utils.sleep(interAtCommandDelay);
-
       this.writeWithCr('AT');
       await Utils.sleep(interAtCommandDelay);
 
@@ -44,7 +42,7 @@ export class SMS {
       await Utils.sleep(interAtCommandDelay);
 
       this.serialPort.write(`${ textModified }${ String.fromCharCode(26) }`);
-      await Utils.sleep(interAtCommandDelay);
+      await Utils.sleep(interAtCommandDelay * 5);
 
       resolve();
     });
