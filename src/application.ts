@@ -19,11 +19,13 @@ export async function bootstrap() {
   const sms = new SMS();
   let device: Device;
 
+  Utils.sleep(5000);
+
   const command: ArgCommand = objArgs?.command;
 
   switch (command) {
     case ArgCommand.OS: {
-      device = new Motion(raspberry, sms);
+      // device = new Motion(raspberry, sms);
       sms.sendBoradcastSms('سلام۳۳');
       break;
     }
