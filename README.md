@@ -1,22 +1,12 @@
 * Notes:
-	1. In the RaspberryPi machine, you may run commands with `sudu` privillage
-
-* In order to create package-lock.json:
-	1. Run `npm i` in the RaspberryPI platform
-	2. By that a file named `package-lock.josn` will be created
-	2. Push to repository
-	3. Pull to the local PC from the repository
-
-* If you need to add a new package:
-	1. Run `npm i` to add needed packages to `package-lock.json`
-	2. Made your changes on code
-	3. Push to the repository
-	4. Go to RaspberryPI platform then do pull from repository
-	5. Run `npm ci` to install the missed pacakges
+	1. In the RaspberryPi machine, you may run commands with `sudo` privillage
 
 * How to run the project:
-	1. npm run build
-	2. start using:
+	1. git clone ...
+	2. go to the cloned directory
+	3. run command `npm i -f`
+	4. npm run build
+	5. start using one of the following:
 		- npm run start -- --command=cooler --args=periodically
 		- npm run start -- --command=cooler --args=set-on
 		- npm run start -- --command=cooler --args=set-off <br/><br/>
@@ -28,17 +18,14 @@
 		- npm run start -- --command=rig --args=group-a,set-off
 		- npm run start -- --command=rig --args=group-b,set-off <br/><br/>
 		
-
 		- npm run start -- --command=board --args=reset <br/><br/>
-
-
+		
 		- npm run start -- --command=internet --args=none <br/><br/>
-
-
+		
 		- npm run start -- --command=motion --args=none <br/><br/>
-
 
 * TODO:
 	- Change `raspberry.ts` to `io.ts`
 	- Convert `UtilsconsoleLog` to a class named `logger`
-	- consoleLog must accept object. in order it shows stringify of that object
+	- consoleLog must accept object. in order to show stringify of that object
+	- Add section to run raspberry only on raspbian linux

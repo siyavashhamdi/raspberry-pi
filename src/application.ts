@@ -1,7 +1,7 @@
 import { Utils, Raspberry, SMS } from './helper';
 import { Cooler, Device, Rig, Internet, Motion } from './device';
 import { MainBoard } from './device/main-board';
-import { ArgCommand } from 'enum';
+import { ArgCommand } from './enum';
 
 export async function bootstrap() {
   Utils.consoleLog('Application started');
