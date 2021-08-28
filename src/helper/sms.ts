@@ -24,6 +24,8 @@ export class SMS {
 
       const textModified = text.split('').map(k => k.charCodeAt(0).toString(16).padStart(4, '0')).join('');
 
+      await Utils.sleep(interAtCommandDelay);
+
       this.writeWithCr('AT');
       await Utils.sleep(interAtCommandDelay);
 
