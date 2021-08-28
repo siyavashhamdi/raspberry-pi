@@ -28,12 +28,20 @@ export class Motion implements Device {
 
       if (this.dtNextSendSms && currDate < this.dtNextSendSms) {
         Utils.consoleLog('Date is not reached yet');
+
+        return;
       }
 
       this.dtNextSendSms = new Date(Utils.addSecondsToDate(currDate, 10 * 60));
-      this.sms.sendSms('09120', 'Hi');
 
-      Utils.consoleLog('pollMotionDetectionA in application!');
+      const smsPhoneNumbers = process.env.SMS_PHONE_NUMBERS?.split(',') || [];
+
+      for (const phoneNum of smsPhoneNumbers) {
+        const msg = 'سلام۲';
+
+        Utils.consoleLog(`Sending message '${ msg }' to phone number '${ phoneNum }'`);
+        this.sms.sendSms(phoneNum, msg);
+      }
     });
   };
 }

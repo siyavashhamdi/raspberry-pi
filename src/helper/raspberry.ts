@@ -38,7 +38,7 @@ export class Raspberry {
   private getDevice(device: any, pinChanged: () => void) {
     device.watch((err: any, value: any) => {
       // eslint-disable-next-line no-underscore-dangle
-      Utils.consoleLog(`Device with pin number '${ device._gpio }' is get to value '${ value }'`);
+      Utils.consoleLog(`Device with pin number '${ device._gpio }' is got as value '${ value }'`);
 
       if (err) {
         throw err;

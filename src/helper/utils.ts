@@ -122,6 +122,9 @@ export class Utils {
 
   public static async makeAppAlive(callback?: () => void): Promise<void> {
     // Heart beat every 1 hour
+    if (callback) {
+      callback();
+    }
 
     setInterval(() => {
       if (callback) {
