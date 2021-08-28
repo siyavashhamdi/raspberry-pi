@@ -1,5 +1,4 @@
 import * as UART from 'raspi-serial';
-import { Utils } from './utils';
 
 export class SMS {
   constructor(serialOption: any = { baudRate: 115200 }) {
@@ -13,8 +12,8 @@ export class SMS {
     this.serialPort.write(`${ cmd }\r`);
   }
 
-  private dataReceived(data: string) {
-    Utils.consoleLog(`SL: 1, dataReceived: ${ data }`);
+  private dataReceived(_data: string) {
+    // Nothing
   }
 
   public sendSms(number: string, text: string) {
@@ -64,31 +63,31 @@ export class SMS {
     });
   }
 
-  // private setBaudRate(baudrate) {
-  //   this.writeWithCr('AT+IPR?');
+  protected setBaudRate(baudrate: string) {
+    this.writeWithCr('AT+IPR?');
 
-  //   setTimeout(() => {
-  //     this.writeWithCr(`AT+IPR=${ baudrate }`);
+    setTimeout(() => {
+      this.writeWithCr(`AT+IPR=${ baudrate }`);
 
-  //     setTimeout(() => {
-  //       this.writeWithCr('AT&W');
-  //     }, 1000);
-  //   }, 1000);
-  // }
+      setTimeout(() => {
+        this.writeWithCr('AT&W');
+      }, 1000);
+    }, 1000);
+  }
 
-  // private initReadyReceiveSms() {
-  //   this.writeWithCr('AT+CMGF=1');
+  protected initReadyReceiveSms() {
+    this.writeWithCr('AT+CMGF=1');
 
-  //   setTimeout(() => {
-  //     this.writeWithCr('AT+CMGD=4');
+    setTimeout(() => {
+      this.writeWithCr('AT+CMGD=4');
 
-  //     setTimeout(() => {
-  //       this.writeWithCr('AT+CNMI=2,2,0,0,0');
+      setTimeout(() => {
+        this.writeWithCr('AT+CNMI=2,2,0,0,0');
 
-  //       setTimeout(() => {
-  //         this.writeWithCr('AT&W');
-  //       }, 1000);
-  //     }, 1000);
-  //   }, 1000);
-  // }
+        setTimeout(() => {
+          this.writeWithCr('AT&W');
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  }
 }

@@ -31,9 +31,9 @@ export class Utils {
     return objKeyVal;
   }
 
-  public static consoleLog(logValue: string | number): void {
+  public static consoleLog(logValue: string | number | object): void {
     const dateTime = this.formatDateTime(new Date());
-    const modifiedLogValue = `[${ dateTime }] : ${ logValue }`;
+    const modifiedLogValue = `[${ dateTime }] : ${ typeof logValue === 'object' ? JSON.stringify(logValue) : logValue }`;
 
     // eslint-disable-next-line no-console
     console.log(modifiedLogValue);
