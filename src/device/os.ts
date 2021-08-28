@@ -1,4 +1,4 @@
-import { Raspberry, SMS } from '../helper';
+import { Raspberry, SMS, Utils } from '../helper';
 import { Device } from './device.interface';
 
 export class OS implements Device {
@@ -20,8 +20,7 @@ export class OS implements Device {
   private sms: SMS;
 
   private pollMotionDetection = () => {
-    this.raspberry.getChangeMotionDetectionA(() => {
-      this.sms.sendBoradcastSms('سلام ۶.');
-    });
+    Utils.consoleLog(this.raspberry);
+    this.sms.sendBoradcastSms('سلام ۶.');
   };
 }
