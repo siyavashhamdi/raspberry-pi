@@ -10,6 +10,7 @@ export class Cooler implements Device {
     switch (params) {
       case 'periodically': {
         this.periodically();
+        Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
         break;
       }
 

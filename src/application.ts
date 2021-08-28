@@ -24,7 +24,6 @@ export async function bootstrap() {
   switch (command) {
     case ArgCommand.cooler: {
       device = new Cooler(raspberry);
-      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
@@ -40,13 +39,11 @@ export async function bootstrap() {
 
     case ArgCommand.internet: {
       device = new Internet(raspberry);
-      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
     case ArgCommand.motion: {
       device = new Motion(raspberry, sms);
-      Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
       break;
     }
 
@@ -54,15 +51,6 @@ export async function bootstrap() {
       throw new Error('No proper command found!');
     }
   }
-
-  // switch (objArgs?.command) {
-  //   case 'cooler':
-  //   case 'internet':
-  //   case 'motion': {
-  //     Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
-  //     break;
-  //   }
-  // }
 
   device.manageCommand(objArgs.args);
 }
