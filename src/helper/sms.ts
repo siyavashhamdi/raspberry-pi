@@ -52,14 +52,15 @@ export class SMS {
     const smsPhoneNumbers = process.env.SMS_PHONE_NUMBERS?.split(',').filter(no => no.length > 10) || [];
 
     if (!smsPhoneNumbers.length) {
-      Utils.consoleLog('No config was set to send message to!');
+      Utils.consoleLog('No config found sending message to!');
 
       return;
     }
 
     for await (const phoneNum of smsPhoneNumbers) {
-      Utils.consoleLog(`Sending message '${ text }' to phone number '${ phoneNum }'`);
+      Utils.consoleLog(`Start sending message '${ text }' to phone number '${ phoneNum }'`);
       await this.sendSms(phoneNum, text);
+      Utils.consoleLog(`Finished sending message '${ text }' to phone number '${ phoneNum }'`);
     }
   }
 
