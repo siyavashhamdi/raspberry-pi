@@ -26,8 +26,20 @@
 		
 		- npm run start -- --command=motion --args=none <br/><br/>
 
+* Set-up startup:
+	1. Run command `npm i pm2 -g`
+	2. Run `pm2 startup` the execute the result of the command (something like `sudo env PATH...`)
+	3. Go to the project directory
+	4. Run the following commands of node in order to add to pm2
+		- pm2 start --name os_boot "npm run start -- --command=os --args=none"
+		- pm2 start --name cooler_periodically "npm run start -- --command=cooler --args=periodically"
+		- pm2 start --name internet_check "npm run start -- --command=internet --args=none"
+		- pm2 start --name motion_check "npm run start -- --command=motion --args=none"
+	5. Run `pm2 save -- force`
+	6. You may use `pm2 monit` or `pm2 list` to see what is running in pm2
+	7. You may use `pm2 delete N` or `pm2 delete all` to delete application(s) from pm2
+	8. You may use `pm2 stop N` or `pm2 stop all` to stop application(s) from pm2
+
 * TODO:
-	- [DONE] Change `raspberry.ts` to `io.ts`
 	- Convert `Utils.consoleLog` to a class named `logger`
-	- [DONE] consoleLog must accept object. in order to show stringify of that object
 	- Add section to run raspberry only on raspbian linux
