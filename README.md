@@ -7,6 +7,8 @@
 	3. run command `npm i -f`
 	4. npm run build
 	5. start using one of the following:
+		- npm run start -- --command=os --args=none <br/><br/>
+
 		- npm run start -- --command=cooler --args=periodically
 		- npm run start -- --command=cooler --args=set-on
 		- npm run start -- --command=cooler --args=set-off <br/><br/>

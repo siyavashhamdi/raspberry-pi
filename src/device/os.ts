@@ -1,4 +1,4 @@
-import { SMS, Utils } from '../helper';
+import { SMS } from '../helper';
 import { Device } from './device.interface';
 
 export class OS implements Device {
@@ -17,7 +17,6 @@ export class OS implements Device {
   private sms: SMS;
 
   private osStarted = () => {
-    Utils.consoleLog('Raspberry OS is booted.');
-    this.sms.sendBoradcastSms('سیستم‌عامل بوت شد.');
+    this.sms.sendBoradcastSms('سلام۴.');
   };
 }
