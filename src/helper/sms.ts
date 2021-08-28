@@ -1,3 +1,4 @@
+import { Utils } from 'helper';
 import * as UART from 'raspi-serial';
 
 export class SMS {
@@ -44,6 +45,21 @@ export class SMS {
         }, delayMs);
       }, delayMs);
     }, delayMs);
+  }
+
+  public sendBoradcastSms(text: string) {
+    const smsPhoneNumbers = process.env.SMS_PHONE_NUMBERS?.split(',').filter(no => no.length > 10) || [];
+
+    if (!smsPhoneNumbers.length) {
+      Utils.consoleLog('No config was set to send message to!');
+
+      return;
+    }
+
+    for (const phoneNum of smsPhoneNumbers) {
+      Utils.consoleLog(`Sending message '${ text }' to phone number '${ phoneNum }'`);
+      this.sendSms(phoneNum, text);
+    }
   }
 
   private init() {

@@ -33,21 +33,7 @@ export class Motion implements Device {
       }
 
       this.dtNextSendSms = new Date(Utils.addSecondsToDate(currDate, 10 * 60));
-
-      const smsPhoneNumbers = process.env.SMS_PHONE_NUMBERS?.split(',').filter(no => no.length > 10) || [];
-
-      if (!smsPhoneNumbers.length) {
-        Utils.consoleLog('No config was set to send message to!');
-
-        return;
-      }
-
-      for (const phoneNum of smsPhoneNumbers) {
-        const smsMsg = 'سنسور حرکتی حیاط فعال گردید.';
-
-        Utils.consoleLog(`Sending message '${ smsMsg }' to phone number '${ phoneNum }'`);
-        this.sms.sendSms(phoneNum, smsMsg);
-      }
+      this.sms.sendBoradcastSms('سنسور حرکتی حیاط فعال گردید.');
     });
   };
 }

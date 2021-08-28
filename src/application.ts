@@ -38,7 +38,7 @@ export async function bootstrap() {
     }
 
     case ArgCommand.internet: {
-      device = new Internet(raspberry);
+      device = new Internet(raspberry, sms);
       break;
     }
 
