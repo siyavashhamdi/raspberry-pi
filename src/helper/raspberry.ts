@@ -1,6 +1,7 @@
 import * as OnOff from 'onoff';
 import { DeviceOutputStatus } from '../enum';
 import { MainDevices } from '../type';
+import { Utils } from './utils';
 
 export class Raspberry {
   constructor() {
@@ -28,13 +29,14 @@ export class Raspberry {
   private setDevice(device: any, status: DeviceOutputStatus) {
     const value = status === DeviceOutputStatus.off ? 0 : 1;
 
+    Utils.consoleLog(`Device with pin number '${ JSON.stringify(device) }' is set to value '${ value }'`);
     device.writeSync(value);
   }
 
   private getDevice(device: any, pinChanged: () => void) {
     device.watch((err: any, value: any) => {
       // eslint-disable-next-line no-console
-      console.log(`value is: ${ value }`);
+      Utils.consoleLog(`Device with pin number '${ JSON.stringify(device) }' is get to value '${ value }'`);
 
       if (err) {
         throw err;
