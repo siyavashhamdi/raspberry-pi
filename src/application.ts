@@ -45,11 +45,13 @@ export async function bootstrap() {
     }
 
     case ArgCommand.internet: {
+      await Utils.sleep(2000);
       device = new Internet(io, sms);
       break;
     }
 
     case ArgCommand.motion: {
+      await Utils.sleep(3000);
       device = new Motion(io, sms);
       break;
     }
