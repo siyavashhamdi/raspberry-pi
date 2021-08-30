@@ -7,7 +7,7 @@ export class SMSListener implements Device {
     this.sms = sms;
   }
 
-  public manageCommand = (params: string, callbackReceivedMsg: (number: string, msgText: string) => void) => {
+  public manageCommand(params: string, callbackReceivedMsg: (number: string, msgText: string) => void) {
     switch (params) {
       default: {
         this.listen();
