@@ -9,7 +9,7 @@ export class SMS {
 
   private serialPort: any;
 
-  public subscribedDataReceived: (number: string, msgText: string) => void;
+  public subscribedDataReceived?: (number: string, msgText: string) => void;
 
   private writeWithCr(cmd: string) {
     this.serialPort.write(`${ cmd }\r`);
@@ -73,18 +73,20 @@ export class SMS {
       let delayTimeout: NodeJS.Timeout;
       let buffer = '';
 
-      this.serialPort.on('data', (data: string) => {
-        Utils.consoleLog('serialPort.on data:');
-        Utils.consoleLog(data);
+      if (this.subscribedDataReceived) {
+        this.serialPort.on('data', (data: string) => {
+          Utils.consoleLog('serialPort.on data:');
+          Utils.consoleLog(data);
 
-        clearTimeout(delayTimeout);
-        buffer += data;
+          clearTimeout(delayTimeout);
+          buffer += data;
 
-        delayTimeout = setTimeout(() => {
-          this.dataReceived(buffer);
-          buffer = '';
-        }, 10);
-      });
+          delayTimeout = setTimeout(() => {
+            this.dataReceived(buffer);
+            buffer = '';
+          }, 10);
+        });
+      }
     });
 
     // 115200 | 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1800 | 1200 | 600 | 300 | 200 | 150 | 134 | 110 | 75 | 50 | number
