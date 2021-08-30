@@ -16,6 +16,8 @@ export class SMS {
   }
 
   private dataReceived(data: string) {
+    Utils.consoleLog(`dataReceived: ${ data }`);
+
     if (this.subscribedDataReceived) {
       this.subscribedDataReceived('111', data);
     }
