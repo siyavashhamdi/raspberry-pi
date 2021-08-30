@@ -1,3 +1,4 @@
+import { SMSListener } from 'device';
 import { Device } from './device.interface';
 
 export interface Devices {
@@ -7,5 +8,5 @@ export interface Devices {
   board: Device,
   internet: Device,
   motion: Device,
-  sms: Device,
+  sms: SMSListener,
 }
