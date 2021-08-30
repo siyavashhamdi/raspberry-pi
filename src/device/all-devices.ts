@@ -31,9 +31,11 @@ export class AllDevices implements Device {
     this.devices.internet.manageCommand('none');
     this.devices.motion.manageCommand('none');
 
-    this.devices.sms.manageCommand('none', (number: string, msgText: string) => {
+    const func = (number: string, msgText: string) => {
       Utils.consoleLog(`yyyyyyyyyyy: number: ${ number } | msgText: ${ msgText }`);
-    });
+    };
+
+    this.devices.sms.manageCommand('none', func);
   };
 
   public manageReceivedCommandFromSms(number: string, msgText: string) {
