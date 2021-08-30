@@ -2,7 +2,7 @@ import * as UART from 'raspi-serial';
 import { Utils } from './utils';
 
 export class SMS {
-  constructor(serialOption: any = { baudRate: 115200 }) {
+  constructor(serialOption: any = { baudRate: 38400 }) {
     this.serialPort = new UART.Serial(serialOption);
     this.init();
   }
