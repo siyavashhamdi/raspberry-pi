@@ -1,5 +1,5 @@
 import { SMS, Utils } from '../helper';
-import { Device } from './device.interface';
+import { Device } from '../type/device.interface';
 
 export class OS implements Device {
   constructor(sms: SMS) {

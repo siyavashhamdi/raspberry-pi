@@ -1,5 +1,5 @@
 import { IO, SMS, Utils } from '../helper';
-import { Device } from './device.interface';
+import { Device } from '../type/device.interface';
 import { MainBoard } from './main-board';
 
 export class Internet implements Device {

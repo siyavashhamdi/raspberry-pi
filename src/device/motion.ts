@@ -1,5 +1,5 @@
 import { IO, SMS, Utils } from '../helper';
-import { Device } from './device.interface';
+import { Device } from '../type/device.interface';
 
 export class Motion implements Device {
   constructor(io: IO, sms: SMS) {

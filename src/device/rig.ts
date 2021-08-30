@@ -1,5 +1,5 @@
 import { IO, Utils } from '../helper';
-import { Device } from './device.interface';
+import { Device } from '../type/device.interface';
 import { DeviceOutputStatus } from '../enum';
 
 export class Rig implements Device {

@@ -1,5 +1,5 @@
 import { IO, Utils } from '../helper';
-import { Device } from './device.interface';
+import { Device } from '../type/device.interface';
 
 export class MainBoard implements Device {
   constructor(io: IO) {

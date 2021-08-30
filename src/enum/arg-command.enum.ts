@@ -1,4 +1,5 @@
 export enum ArgCommand {
+  all = 'all',
   OS = 'os',
   cooler = 'cooler',
   rig = 'rig',
