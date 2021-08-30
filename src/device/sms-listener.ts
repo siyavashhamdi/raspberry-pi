@@ -20,8 +20,12 @@ export class SMSListener implements Device {
   private sms: SMS;
 
   private listen = () => {
-    // @todo: Will completed later...
-    Utils.consoleLog(`${ this.io } + ${ this.sms }`);
+    this.sms.subscribedDataReceived = (number: string, msgText: string) => {
+      Utils.consoleLog(`Message received => number: ${ number } | msgText: ${ msgText }`);
+    };
+
+    // @todo: Will be completed later...
+    Utils.consoleLog(`listen called. ${ this.io } + ${ this.sms }`);
     // Check received message here...
   };
 }

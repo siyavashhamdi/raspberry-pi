@@ -26,9 +26,11 @@
 		
 		- npm run start -- --command=motion --args=none <br/><br/>
 
+		- npm run start -- --command=sms --args=none <br/><br/>
+
 * Set-up startup:
 	1. Run command `npm i pm2 -g`
-	2. Run `pm2 startup` the execute the result of the command (something like `sudo env PATH...`)
+	2. Run `pm2 startup` then execute the result of the command (something like `sudo env PATH...`)
 	3. Go to the project directory
 	4. Run the following commands of node in order to add to pm2
 		- pm2 start --name os_boot "npm run start -- --command=os --args=none"

@@ -9,12 +9,16 @@ export class SMS {
 
   private serialPort: any;
 
+  public subscribedDataReceived: (number: string, msgText: string) => void;
+
   private writeWithCr(cmd: string) {
     this.serialPort.write(`${ cmd }\r`);
   }
 
-  private dataReceived(_data: string) {
-    // Nothing
+  private dataReceived(data: string) {
+    if (this.subscribedDataReceived) {
+      this.subscribedDataReceived('111', data);
+    }
   }
 
   private async sendSms(number: string, text: string): Promise<void> {

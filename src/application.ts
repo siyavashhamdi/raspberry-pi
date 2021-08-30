@@ -1,5 +1,5 @@
 import { Utils, IO, SMS } from './helper';
-import { Cooler, Device, Rig, Internet, Motion, OS } from './device';
+import { Cooler, Device, Rig, Internet, Motion, OS, SMSListener } from './device';
 import { MainBoard } from './device/main-board';
 import { ArgCommand } from './enum';
 
@@ -54,7 +54,7 @@ export async function bootstrap() {
     }
 
     case ArgCommand.sms: {
-      device = new Motion(io, sms);
+      device = new SMSListener(io, sms);
       break;
     }
 
