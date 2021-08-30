@@ -74,6 +74,8 @@ export class SMS {
       let buffer = '';
 
       this.serialPort.on('data', (data: string) => {
+        Utils.consoleLog(`serialPort.on data: '${ data }'`);
+
         clearTimeout(delayTimeout);
         buffer += data;
 
