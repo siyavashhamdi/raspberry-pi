@@ -75,20 +75,18 @@ export class SMS {
       let delayTimeout: NodeJS.Timeout;
       let buffer = '';
 
-      if (this.subscribedDataReceived) {
-        this.serialPort.on('data', (data: string) => {
-          Utils.consoleLog('serialPort.on data:');
-          Utils.consoleLog(data);
+      this.serialPort.on('data', (data: string) => {
+        Utils.consoleLog('serialPort.on data:');
+        Utils.consoleLog(data);
 
-          clearTimeout(delayTimeout);
-          buffer += data;
+        clearTimeout(delayTimeout);
+        buffer += data;
 
-          delayTimeout = setTimeout(() => {
-            this.dataReceived(buffer);
-            buffer = '';
-          }, 10);
-        });
-      }
+        delayTimeout = setTimeout(() => {
+          this.dataReceived(buffer);
+          buffer = '';
+        }, 10);
+      });
     });
   }
 
