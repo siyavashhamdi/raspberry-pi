@@ -34,7 +34,7 @@ export class AllDevices implements Device {
     this.devices.sms.manageCommand('none', this.manageReceivedCommandFromSms);
   };
 
-  private manageReceivedCommandFromSms(number: string, msgText: string) {
+  public manageReceivedCommandFromSms(number: string, msgText: string) {
     Utils.consoleLog(`xxxxxxxxxx: number: ${ number } | msgText: ${ msgText }`);
   }
 }

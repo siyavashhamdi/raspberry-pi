@@ -14,6 +14,7 @@ export class SMSListener implements Device {
       }
     }
 
+    Utils.consoleLog(`SL: 1, ${ callbackReceivedMsg }`);
     this.callbackReceivedMsg = callbackReceivedMsg;
   };
 
