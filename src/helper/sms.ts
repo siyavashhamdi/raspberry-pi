@@ -5,6 +5,11 @@ export class SMS {
   constructor(serialOption: any = { baudRate: 115200 }) {
     this.serialPort = new UART.Serial(serialOption);
     this.init();
+
+    Utils.sleep(1000);
+
+    // 115200 | 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1800 | 1200 | 600 | 300 | 200 | 150 | 134 | 110 | 75 | 50 | number
+    this.setBaudRate(115200);
   }
 
   private serialPort: any;
@@ -88,7 +93,7 @@ export class SMS {
     });
   }
 
-  protected setBaudRate(baudrate: string) {
+  protected setBaudRate(baudrate: number) {
     this.writeWithCr('AT+IPR?');
 
     setTimeout(() => {
