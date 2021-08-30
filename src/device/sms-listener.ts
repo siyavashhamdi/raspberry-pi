@@ -27,9 +27,9 @@ export class SMSListener implements Device {
     Utils.consoleLog(`sl: ${ 1 }, listen done`);
 
     this.sms.subscribedDataReceived = (number: string, msgText: string) => {
-      Utils.consoleLog(`Message received => number: ${ number } | msgText: ${ msgText }`);
-
       if (this.callbackReceivedMsg) {
+        Utils.consoleLog(`Message received => number: ${ number } | msgText: ${ msgText }\
+| this.callbackReceivedMsg: ${ this.callbackReceivedMsg }`);
         this.callbackReceivedMsg(number, msgText);
       }
     };
