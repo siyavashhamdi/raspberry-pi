@@ -24,12 +24,12 @@ export class AllDevices implements Device {
   private devices: Devices;
 
   private manageInitialDevices = () => {
-    this.devices.os.manageCommand('none');
-    this.devices.cooler.manageCommand('periodically');
-    // this.devices.rig.manageCommand('none');
-    // this.devices.board.manageCommand('none');
-    this.devices.internet.manageCommand('none');
-    this.devices.motion.manageCommand('none');
+    this.devices.os.manageCommand('none', '');
+    this.devices.cooler.manageCommand('periodically', '');
+    // this.devices.rig.manageCommand('none', '');
+    // this.devices.board.manageCommand('none', '');
+    this.devices.internet.manageCommand('none', '');
+    this.devices.motion.manageCommand('none', '');
 
     const func = (number: string, msgText: string) => {
       Utils.consoleLog(`yyyyyyyyyyy: number: ${ number } | msgText: ${ msgText }`);

@@ -81,6 +81,6 @@ export async function bootstrap() {
     }
   }
 
-  device.manageCommand(objArgs.args);
+  device.manageCommand(objArgs.args, '');
   Utils.makeAppAlive(() => Utils.consoleLog('Application heart beat...'));
 }
