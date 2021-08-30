@@ -14,7 +14,8 @@ export class SMSListener implements Device {
       }
     }
 
-    Utils.consoleLog(`SL: 1, param: ${ params }, ${ callbackReceivedMsg }`);
+    Utils.consoleLog(`SL: 1, param: ${ params }, callbackReceivedMsg: ${ callbackReceivedMsg },
+    typeof: ${ typeof callbackReceivedMsg }, is: ${ !!callbackReceivedMsg }`);
     this.callbackReceivedMsg = callbackReceivedMsg;
   }
 
@@ -22,7 +23,7 @@ export class SMSListener implements Device {
 
   private sms: SMS;
 
-  public callbackReceivedMsg?: (number: string, msgText: string) => void;
+  public callbackReceivedMsg: any;
 
   private listen = () => {
     Utils.consoleLog(`sl: ${ 1 }, listen done`);
