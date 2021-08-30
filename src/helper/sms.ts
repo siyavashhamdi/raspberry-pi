@@ -2,7 +2,7 @@ import * as UART from 'raspi-serial';
 import { Utils } from './utils';
 
 export class SMS {
-  constructor(serialOption: any = { baudRate: 57600 }) {
+  constructor(serialOption: any = { baudRate: 38400 }) {
     this.serialPort = new UART.Serial(serialOption);
     this.init();
   }
@@ -90,10 +90,12 @@ export class SMS {
     // 115200 | 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1800 | 1200 | 600 | 300 | 200 | 150 | 134 | 110 | 75 | 50 | number
     await Utils.sleep(5000);
     Utils.consoleLog('Setting baudrate');
-    this.setBaudRate(57600);
+    this.setBaudRate(38400);
   }
 
   protected setBaudRate(baudrate: number) {
+    this.writeWithCr('AT');
+    Utils.sleep(1000);
     this.writeWithCr('AT+IPR?');
 
     setTimeout(() => {
