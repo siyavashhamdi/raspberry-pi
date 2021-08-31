@@ -8,20 +8,20 @@ export class Internet implements Device {
     this.sms = sms;
   }
 
-  public manageCommand = (params: string) => {
+  public manageCommand(params: string) {
     switch (params) {
       default: {
         this.pollConnectionAvailability();
         break;
       }
     }
-  };
+  }
 
   private io: IO;
 
   private sms: SMS;
 
-  private pollConnectionAvailability = () => {
+  private pollConnectionAvailability() {
     const internetCheckMins = process.env.INTERNET_CHECK_MINS?.split(',')?.map(min => +min) || [];
 
     Utils.checkConnectionAvailability(internetCheckMins, 10, (isAvailable) => {
@@ -40,5 +40,5 @@ export class Internet implements Device {
         Utils.consoleLog('Internet connection is available...');
       }
     });
-  };
+  }
 }

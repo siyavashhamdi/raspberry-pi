@@ -6,18 +6,18 @@ export class OS implements Device {
     this.sms = sms;
   }
 
-  public manageCommand = (params: string) => {
+  public manageCommand(params: string) {
     switch (params) {
       default: {
         this.osStarted();
       }
     }
-  };
+  }
 
   private sms: SMS;
 
-  private osStarted = () => {
+  private osStarted() {
     Utils.consoleLog('Raspberry OS is booted.');
     this.sms.sendBroadcastSms('سیستم‌عامل بوت شد.');
-  };
+  }
 }

@@ -7,13 +7,13 @@ export class Motion implements Device {
     this.sms = sms;
   }
 
-  public manageCommand = (params: string) => {
+  public manageCommand(params: string) {
     switch (params) {
       default: {
         this.pollMotionDetection();
       }
     }
-  };
+  }
 
   private io: IO;
 
@@ -21,7 +21,7 @@ export class Motion implements Device {
 
   private dtNextSendSms?: Date;
 
-  private pollMotionDetection = () => {
+  private pollMotionDetection() {
     this.io.getChangeMotionDetectionA(() => {
       const currDate = new Date();
 
@@ -34,5 +34,5 @@ export class Motion implements Device {
       this.dtNextSendSms = new Date(Utils.addSecondsToDate(currDate, 10 * 60));
       this.sms.sendBroadcastSms('سنسور حرکتی حیاط فعال گردید.');
     });
-  };
+  }
 }

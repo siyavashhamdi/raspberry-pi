@@ -6,7 +6,7 @@ export class Cooler implements Device {
     this.io = io;
   }
 
-  public manageCommand = (params: string) => {
+  public manageCommand(params: string) {
     switch (params) {
       case 'periodically': {
         this.periodically();
@@ -27,11 +27,11 @@ export class Cooler implements Device {
         throw new Error('No proper param found for cooler');
       }
     }
-  };
+  }
 
   private io: IO;
 
-  private periodically = () => {
+  private periodically() {
     const coolerOnByMin = +(process.env.COOLER_ON_BY_MIN || 120);
     const coolerOffByMin = +(process.env.COOLER_OFF_BY_MIN || 120);
 
@@ -47,13 +47,13 @@ export class Cooler implements Device {
         Utils.consoleLog(`Cooler current status is '${ status.toUpperCase() }' and the next trigger will be on ${ formattedNextDt }`);
       },
     );
-  };
+  }
 
-  private setOn = () => {
+  private setOn() {
     this.io.coolerSetOn();
-  };
+  }
 
-  private setOff = () => {
+  private setOff() {
     this.io.coolerSetOff();
-  };
+  }
 }

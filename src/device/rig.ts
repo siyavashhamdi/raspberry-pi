@@ -7,7 +7,7 @@ export class Rig implements Device {
     this.io = io;
   }
 
-  public manageCommand = (params: string) => {
+  public manageCommand(params: string) {
     switch (params) {
       case 'group-a,reset': {
         this.resetGroupA();
@@ -43,41 +43,41 @@ export class Rig implements Device {
         throw new Error('No proper param found');
       }
     }
-  };
+  }
 
   private io: IO;
 
-  private resetGroupA = () => {
+  private resetGroupA() {
     const waitByMin = +(process.env.RIG_RESEAT_WAIT_BY_MIN || 1);
 
     this.io.rigResetGroupA(waitByMin);
     Utils.consoleLog(`Rig group A is restarting in ${ waitByMin } minute(s)`);
-  };
+  }
 
-  private resetGroupB = () => {
+  private resetGroupB() {
     const waitByMin = +(process.env.RIG_RESEAT_WAIT_BY_MIN || 1);
 
     this.io.rigResetGroupB(waitByMin);
     Utils.consoleLog(`Rig group B is restarting in ${ waitByMin } minute(s)`);
-  };
+  }
 
-  private setOnGroupA = () => {
+  private setOnGroupA() {
     this.io.rigSetGroupA(DeviceOutputStatus.on);
     Utils.consoleLog('Rig group A is set to \'ON\'');
-  };
+  }
 
-  private setOffGroupA = () => {
+  private setOffGroupA() {
     this.io.rigSetGroupA(DeviceOutputStatus.off);
     Utils.consoleLog('Rig group A is set to \'OFF\'');
-  };
+  }
 
-  private setOnGroupB = () => {
+  private setOnGroupB() {
     this.io.rigSetGroupB(DeviceOutputStatus.on);
     Utils.consoleLog('Rig group B is set to \'ON\'');
-  };
+  }
 
-  private setOffGroupB = () => {
+  private setOffGroupB() {
     this.io.rigSetGroupB(DeviceOutputStatus.off);
     Utils.consoleLog('Rig group B is set to \'OFF\'');
-  };
+  }
 }

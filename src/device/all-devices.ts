@@ -9,13 +9,13 @@ export class AllDevices implements Device {
     this.devices = devices;
   }
 
-  public manageCommand = (params: string) => {
+  public manageCommand(params: string) {
     switch (params) {
       default: {
         this.manageInitialDevices();
       }
     }
-  };
+  }
 
   protected io: IO;
 
@@ -23,7 +23,7 @@ export class AllDevices implements Device {
 
   private devices: Devices;
 
-  private manageInitialDevices = () => {
+  private manageInitialDevices() {
     this.devices.os.manageCommand('none', '');
     this.devices.cooler.manageCommand('periodically', '');
     // this.devices.rig.manageCommand('none', '');
@@ -36,7 +36,7 @@ export class AllDevices implements Device {
     };
 
     this.devices.sms.manageCommand('none', func);
-  };
+  }
 
   public manageReceivedCommandFromSms(number: string, msgText: string) {
     Utils.consoleLog(`xxxxxxxxxx: number: ${ number } | msgText: ${ msgText }`);

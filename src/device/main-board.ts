@@ -6,7 +6,7 @@ export class MainBoard implements Device {
     this.io = io;
   }
 
-  public manageCommand = (params: string) => {
+  public manageCommand(params: string) {
     switch (params) {
       case 'reset': {
         this.reset();
@@ -17,15 +17,15 @@ export class MainBoard implements Device {
         throw new Error('No proper param found for cooler');
       }
     }
-  };
+  }
 
   private io: IO;
 
-  public reset = () => {
+  public reset() {
     Utils.consoleLog('The main board is restarted. It will be alive depends on the protectors delay.');
 
     setTimeout(() => {
       this.io.mainBoardReset();
     }, 2000);
-  };
+  }
 }
